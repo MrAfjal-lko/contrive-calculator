@@ -1268,7 +1268,7 @@
     <div class="header-text">
      <h1 id="company-name">Contrive Interior &amp; Construction</h1>
      <div class="subtitle">
-      Internal Calculation Tool
+      Internal Quotation Calculation Tool
      </div>
     </div>
    </header><!-- Project Type Selection Screen -->
@@ -1323,9 +1323,9 @@
       </div>
       <div class="input-group"><label for="unit-select">Measurement Unit</label> <select id="unit-select" onchange="handleUnitChange()" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255, 138, 76, 0.15); border-radius: 8px; font-size: 0.875rem; background: rgba(15, 20, 25, 0.6); color: #e8eaed; font-family: 'Space Mono', monospace; height: 42px; cursor: pointer;"> <option value="feet">Feet (ft)</option> <option value="mm">Millimeters (mm)</option> <option value="meter">Meters (m)</option> </select> <small>Select your preferred measurement unit for all measurements</small>
       </div>
-      <div class="input-group"><label for="length">Length (<span id="length-unit">ft</span>)</label> <input type="number" id="length" step="0.1" value="20" oninput="calculate()">
+      <div class="input-group"><label for="length">Length (<span id="length-unit">ft</span>)</label> <input type="number" id="length" step="0.1" value="" placeholder="Enter length" oninput="calculate()">
       </div>
-      <div class="input-group"><label for="width">Width (<span id="width-unit">ft</span>)</label> <input type="number" id="width" step="0.1" value="12" oninput="calculate()">
+      <div class="input-group"><label for="width">Width (<span id="width-unit">ft</span>)</label> <input type="number" id="width" step="0.1" value="" placeholder="Enter width" oninput="calculate()">
       </div>
       <div class="input-group"><label for="height">Height (<span id="height-unit">ft</span>) - Editable</label> <input type="number" id="height" step="0.1" value="10" oninput="calculate()">
       </div>
@@ -1335,13 +1335,13 @@
        <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="2" width="6" height="16" stroke="#ff8a4c" stroke-width="2" /> <rect x="11" y="5" width="6" height="10" stroke="#ff8a4c" stroke-width="2" />
        </svg> Doors &amp; Windows
       </div>
-      <div class="input-group"><label for="num-doors">Number of Doors</label> <input type="number" id="num-doors" min="0" value="1" oninput="calculate()">
+      <div class="input-group"><label for="num-doors">Number of Doors</label> <input type="number" id="num-doors" min="0" value="0" placeholder="Enter number" oninput="calculate()">
       </div>
       <div class="input-group"><label for="door-length">Door Length (<span id="door-length-unit">ft</span>)</label> <input type="number" id="door-length" step="0.1" value="7" oninput="calculate()">
       </div>
       <div class="input-group"><label for="door-width">Door Width (<span id="door-width-unit">ft</span>)</label> <input type="number" id="door-width" step="0.1" value="3" oninput="calculate()">
       </div>
-      <div class="input-group"><label for="num-windows">Number of Windows</label> <input type="number" id="num-windows" min="0" value="2" oninput="calculate()">
+      <div class="input-group"><label for="num-windows">Number of Windows</label> <input type="number" id="num-windows" min="0" value="0" placeholder="Enter number" oninput="calculate()">
       </div>
       <div class="input-group"><label for="window-length">Window Length (<span id="window-length-unit">ft</span>)</label> <input type="number" id="window-length" step="0.1" value="4" oninput="calculate()">
       </div>
@@ -1560,11 +1560,39 @@
         'shed': 'Shed'
       };
       
+      // Project-specific color themes
+      const projectThemes = {
+        'aerocon': {
+          primary: '#ff8a4c',      // Orange (default)
+          secondary: '#ffad7a',
+          gradient: 'linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%)'
+        },
+        'puff': {
+          primary: '#4c9fff',      // Blue
+          secondary: '#7ab8ff',
+          gradient: 'linear-gradient(135deg, #4c9fff 0%, #7ab8ff 100%)'
+        },
+        'container': {
+          primary: '#9f4cff',      // Purple
+          secondary: '#ba7aff',
+          gradient: 'linear-gradient(135deg, #9f4cff 0%, #ba7aff 100%)'
+        },
+        'shed': {
+          primary: '#4cff8a',      // Green
+          secondary: '#7affad',
+          gradient: 'linear-gradient(135deg, #4cff8a 0%, #7affad 100%)'
+        }
+      };
+      
       currentProject = {
         type: type,
         name: projectNames[type],
-        defaultHeight: defaultHeight
+        defaultHeight: defaultHeight,
+        theme: projectThemes[type]
       };
+      
+      // Apply theme colors to CSS variables
+      applyProjectTheme(projectThemes[type]);
       
       document.getElementById('height').value = defaultHeight;
       document.getElementById('current-project-name').textContent = projectNames[type];
@@ -1579,6 +1607,178 @@
       document.getElementById('selection-screen').style.display = 'flex';
       document.getElementById('calculator-screen').classList.remove('active');
       currentProject = null;
+      
+      // Reset to default orange theme
+      applyProjectTheme({
+        primary: '#ff8a4c',
+        secondary: '#ffad7a',
+        gradient: 'linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%)'
+      });
+    }
+    
+    // Apply project-specific theme colors
+    function applyProjectTheme(theme) {
+      // Update all elements with primary color
+      const primaryElements = [
+        '.theme-toggle',
+        '.project-type-btn',
+        '.section-title',
+        '.project-name',
+        '.change-project-btn',
+        '.action-btn',
+        '.rate-input',
+        '.internal-wall-entry label',
+        'h1',
+        '.selection-box h2',
+        '.results-table th'
+      ];
+      
+      primaryElements.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.style.setProperty('color', theme.primary, 'important');
+        });
+      });
+      
+      // Update gradient text elements
+      const h1 = document.querySelector('h1');
+      if (h1) {
+        h1.style.background = theme.gradient;
+        h1.style.webkitBackgroundClip = 'text';
+        h1.style.webkitTextFillColor = 'transparent';
+        h1.style.backgroundClip = 'text';
+      }
+      
+      const h2 = document.querySelector('.selection-box h2');
+      if (h2) {
+        h2.style.background = theme.gradient;
+        h2.style.webkitBackgroundClip = 'text';
+        h2.style.webkitTextFillColor = 'transparent';
+        h2.style.backgroundClip = 'text';
+      }
+      
+      // Update borders
+      const borderElements = document.querySelectorAll('.theme-toggle, .project-type-btn, .input-section, .project-header, .results-section, .rate-input, .change-project-btn, .action-btn');
+      borderElements.forEach(el => {
+        el.style.borderColor = `${theme.primary}40`;
+      });
+      
+      // Update backgrounds with theme color
+      const backgroundElements = document.querySelectorAll('.results-table thead, .theme-toggle, .change-project-btn, .action-btn');
+      backgroundElements.forEach(el => {
+        if (el.classList.contains('results-table')) {
+          el.style.background = `${theme.primary}14`;
+        } else {
+          el.style.background = `${theme.primary}1a`;
+        }
+      });
+      
+      // Update SVG strokes
+      const svgElements = document.querySelectorAll('.section-title svg, .project-name svg');
+      svgElements.forEach(svg => {
+        svg.style.stroke = theme.primary;
+      });
+      
+      // Update focus and hover states dynamically
+      const style = document.createElement('style');
+      style.id = 'dynamic-theme-style';
+      
+      // Remove old dynamic style if exists
+      const oldStyle = document.getElementById('dynamic-theme-style');
+      if (oldStyle) oldStyle.remove();
+      
+      style.innerHTML = `
+        .input-group input:focus,
+        .rate-input:focus,
+        .internal-wall-entry input:focus,
+        select:focus {
+          border-color: ${theme.primary} !important;
+          box-shadow: 0 0 0 3px ${theme.primary}1a !important;
+        }
+        
+        .project-type-btn:hover {
+          border-color: ${theme.primary} !important;
+          box-shadow: 0 12px 40px ${theme.primary}33 !important;
+        }
+        
+        .theme-toggle:hover,
+        .change-project-btn:hover,
+        .action-btn:hover {
+          background: ${theme.primary}33 !important;
+          border-color: ${theme.primary} !important;
+        }
+        
+        .toggle-label:hover {
+          border-color: ${theme.primary}26 !important;
+          background: ${theme.primary}0d !important;
+        }
+        
+        .toggle-label input[type="checkbox"] {
+          accent-color: ${theme.primary} !important;
+        }
+        
+        .section-title {
+          border-bottom-color: ${theme.primary}33 !important;
+        }
+        
+        .results-table thead {
+          border-bottom-color: ${theme.primary}33 !important;
+        }
+        
+        .results-table tfoot td {
+          border-top-color: ${theme.primary}33 !important;
+        }
+        
+        .gst-row {
+          background: ${theme.primary}14 !important;
+          color: ${theme.primary} !important;
+        }
+        
+        .grand-total-row {
+          background: ${theme.primary}26 !important;
+          color: ${theme.primary} !important;
+        }
+        
+        .per-sqft-row {
+          background: ${theme.secondary}14 !important;
+          color: ${theme.secondary} !important;
+        }
+        
+        .per-sqft-row-with-gst {
+          background: ${theme.secondary}1f !important;
+          color: ${theme.secondary} !important;
+        }
+        
+        footer .powered-by {
+          color: ${theme.primary} !important;
+        }
+        
+        footer .contact {
+          color: ${theme.secondary} !important;
+        }
+        
+        .total-card.gst {
+          background: ${theme.primary}14 !important;
+          color: ${theme.primary} !important;
+        }
+        
+        .total-card.grand {
+          background: ${theme.primary}26 !important;
+          color: ${theme.primary} !important;
+        }
+        
+        .total-card.per-sqft {
+          background: ${theme.secondary}14 !important;
+          color: ${theme.secondary} !important;
+        }
+        
+        .total-card.per-sqft-gst {
+          background: ${theme.secondary}1f !important;
+          color: ${theme.secondary} !important;
+        }
+      `;
+      
+      document.head.appendChild(style);
     }
     
     // Update internal walls inputs
@@ -1842,7 +2042,7 @@
           <td>${item.name}</td>
           <td>${item.quantity} ${item.unit}</td>
           <td><input type="number" class="rate-input" id="${item.rateId}" value="${currentRate}" step="0.01" placeholder="0"></td>
-          <td>  ${amount.toFixed(2)}</td>
+          <td>��${amount.toFixed(2)}</td>
         `;
         
         tbody.appendChild(row);
@@ -2062,5 +2262,5 @@
       document.body.appendChild(message);
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c165ee8736c178f',t:'MTc2ODk5Mzg4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1e03a025a81794',t:'MTc2OTA3NDAzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
