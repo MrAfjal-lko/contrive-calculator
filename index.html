@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Internal Calculator - Contrive Interior &amp; Construction</title>
   <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Mono:wght@400;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     body {
       box-sizing: border-box;
@@ -18,6 +19,8 @@
       margin: 0;
       padding: 0;
     }
+    
+
     
     /* Remove number input spinners */
     input[type="number"]::-webkit-outer-spin-button,
@@ -32,11 +35,13 @@
     }
     
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #1a1d29 0%, #0f1419 100%);
       color: #e8eaed;
-      line-height: 1.5;
+      line-height: 1.6;
       transition: background 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
     /* Light Mode */
@@ -200,52 +205,100 @@
       position: absolute;
       top: 2rem;
       right: 2rem;
-      background: rgba(255, 138, 76, 0.1);
-      border: 1px solid rgba(255, 138, 76, 0.25);
-      color: #ff8a4c;
-      padding: 0.625rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.875rem;
-      font-family: 'Space Mono', monospace;
+      background: rgba(255, 20, 147, 0.15);
+      border: 2px solid rgba(255, 20, 147, 0.4);
+      color: #ff1493;
+      padding: 0.875rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
       font-weight: 600;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.4), 0 0 40px rgba(255, 20, 147, 0.2);
+      animation: pinkGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pinkGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 20, 147, 0.4), 0 0 40px rgba(255, 20, 147, 0.2);
+        border-color: rgba(255, 20, 147, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 20, 147, 0.6), 0 0 60px rgba(255, 20, 147, 0.4), 0 0 80px rgba(255, 20, 147, 0.2);
+        border-color: rgba(255, 20, 147, 0.7);
+      }
     }
     
     .theme-toggle:hover {
-      background: rgba(255, 138, 76, 0.2);
-      border-color: #ff8a4c;
-      transform: translateY(-2px);
+      background: rgba(255, 20, 147, 0.25);
+      border-color: #ff1493;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 35px rgba(255, 20, 147, 0.7), 0 0 70px rgba(255, 20, 147, 0.5), 0 0 100px rgba(255, 20, 147, 0.3);
     }
     
     .theme-toggle svg {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 4px rgba(255, 20, 147, 0.6));
     }
     
     h1 {
-      font-size: 4.5rem;
-      font-weight: 800;
-      font-family: 'Bebas Neue', cursive;
-      letter-spacing: 3px;
+      font-size: 5.25rem;
+      font-weight: 700;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: -0.5px;
       background: linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 0.25rem;
+      animation: textGlow 3s ease-in-out infinite;
+      transition: all 0.4s ease;
+      display: inline-block;
+    }
+    
+    h1:hover {
+      transform: scale(1.05) rotate(-1deg);
+      filter: drop-shadow(0 0 30px rgba(255, 138, 76, 0.9)) drop-shadow(0 0 60px rgba(255, 173, 122, 0.7));
+      animation: intenseGlow 1s ease-in-out infinite;
+    }
+    
+    @keyframes textGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(255, 138, 76, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 20px rgba(255, 138, 76, 0.8)) drop-shadow(0 0 30px rgba(255, 173, 122, 0.6));
+      }
+    }
+    
+    @keyframes intenseGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(255, 138, 76, 0.9)) drop-shadow(0 0 60px rgba(255, 173, 122, 0.7));
+      }
+      50% {
+        filter: drop-shadow(0 0 50px rgba(255, 138, 76, 1)) drop-shadow(0 0 90px rgba(255, 173, 122, 0.9));
+      }
     }
     
     .subtitle {
-      font-size: 0.75rem;
-      color: #6b7280;
+      font-size: 0.875rem;
+      color: #9ca3af;
       margin-top: 0.5rem;
-      font-family: 'Space Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      font-family: 'Inter', sans-serif;
+      text-transform: none;
+      letter-spacing: 0.3px;
       font-weight: 400;
+      transition: all 0.3s ease;
+    }
+    
+    .subtitle:hover {
+      color: #ffad7a;
+      transform: scale(1.02);
+      text-shadow: 0 0 10px rgba(255, 173, 122, 0.5);
     }
     
     /* Project Type Selection Screen */
@@ -255,7 +308,9 @@
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      background: linear-gradient(135deg, #0f1419 0%, #1a1d29 50%, #2d1b24 100%);
+      background: linear-gradient(135deg, #1a0a00 0%, #0a0a1a 25%, #001a0a 50%, #0a001a 75%, #1a0a00 100%);
+      background-size: 400% 400%;
+      animation: rotateGradient 20s ease infinite;
       position: relative;
       overflow: hidden;
     }
@@ -267,13 +322,61 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255, 138, 76, 0.08) 0%, transparent 50%);
-      animation: rotateGradient 20s linear infinite;
+      background: radial-gradient(circle at center, rgba(255, 138, 76, 0.3) 0%, rgba(255, 138, 76, 0.15) 20%, transparent 50%);
+      animation: rotateGlow 15s linear infinite, glowPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    .selection-screen::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(76, 159, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(159, 76, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(76, 255, 138, 0.1) 0%, transparent 50%);
+      animation: floatGlow 20s ease-in-out infinite;
+      pointer-events: none;
     }
     
     @keyframes rotateGradient {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 50% 50%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 50% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes rotateGlow {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    
+    @keyframes floatGlow {
+      0%, 100% { 
+        opacity: 0.5;
+        transform: scale(1);
+      }
+      25% { 
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
+      50% { 
+        opacity: 0.6;
+        transform: scale(0.95);
+      }
+      75% { 
+        opacity: 0.9;
+        transform: scale(1.05);
+      }
     }
     
     .selection-box {
@@ -286,24 +389,43 @@
       border: 1px solid rgba(255, 138, 76, 0.12);
       position: relative;
       z-index: 1;
+      backdrop-filter: blur(10px);
+      animation: floatingBox 6s ease-in-out infinite;
+    }
+    
+    @keyframes floatingBox {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
     
     .selection-box h2 {
-      font-size: 2rem;
+      font-size: 2.25rem;
       margin-bottom: 0.5rem;
-      font-family: 'Bebas Neue', cursive;
-      letter-spacing: 1px;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.5px;
+      font-weight: 700;
       background: linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      transition: all 0.3s ease;
+    }
+    
+    .selection-box h2:hover {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 20px rgba(255, 138, 76, 0.8));
     }
     
     .selection-subtitle {
-      color: #6b7280;
-      font-size: 0.875rem;
+      color: #9ca3af;
+      font-size: 0.9375rem;
       margin-bottom: 2rem;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
     }
     
     .project-types {
@@ -313,17 +435,16 @@
     }
     
     .project-type-btn {
-      background: linear-gradient(135deg, #1a1d29 0%, #252932 100%);
+      background: #1a1d29;
       border: 2px solid rgba(255, 138, 76, 0.2);
       padding: 2rem 1.5rem;
       border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1.125rem;
-      font-weight: 700;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 1.25rem;
+      font-weight: 600;
       color: #ff8a4c;
-      font-family: 'Bebas Neue', cursive;
-      letter-spacing: 1px;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.3px;
       position: relative;
       overflow: hidden;
     }
@@ -332,103 +453,124 @@
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 138, 76, 0.08), transparent);
-      transition: left 0.5s ease;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
     }
     
-    /* Unique gradient backgrounds for each project type */
-    .project-type-btn:nth-child(1)::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 138, 76, 0.15) 0%, rgba(255, 107, 53, 0.1) 50%, transparent 100%);
-      opacity: 0.5;
-      z-index: -1;
-      transition: opacity 0.3s ease;
+    .project-type-btn.aerocon::before {
+      background: linear-gradient(135deg, rgba(255, 138, 76, 0.2) 0%, rgba(255, 100, 50, 0.3) 100%);
     }
     
-    .project-type-btn:nth-child(2)::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(76, 159, 255, 0.15) 0%, rgba(53, 138, 255, 0.1) 50%, transparent 100%);
-      opacity: 0.5;
-      z-index: -1;
-      transition: opacity 0.3s ease;
+    .project-type-btn.puff::before {
+      background: linear-gradient(135deg, rgba(76, 159, 255, 0.2) 0%, rgba(50, 130, 255, 0.3) 100%);
     }
     
-    .project-type-btn:nth-child(3)::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(159, 76, 255, 0.15) 0%, rgba(138, 53, 255, 0.1) 50%, transparent 100%);
-      opacity: 0.5;
-      z-index: -1;
-      transition: opacity 0.3s ease;
+    .project-type-btn.container::before {
+      background: linear-gradient(135deg, rgba(159, 76, 255, 0.2) 0%, rgba(130, 50, 255, 0.3) 100%);
     }
     
-    .project-type-btn:nth-child(4)::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(76, 255, 138, 0.15) 0%, rgba(53, 255, 107, 0.1) 50%, transparent 100%);
-      opacity: 0.5;
-      z-index: -1;
-      transition: opacity 0.3s ease;
+    .project-type-btn.shed::before {
+      background: linear-gradient(135deg, rgba(76, 255, 138, 0.2) 0%, rgba(50, 255, 100, 0.3) 100%);
+    }
+    
+    .project-type-btn > * {
+      position: relative;
+      z-index: 1;
     }
     
     .project-type-btn:hover::before {
-      left: 100%;
+      opacity: 1;
     }
     
     .project-type-btn:hover {
+      border-color: currentColor;
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 20px 60px currentColor;
+      background: #252932;
+    }
+    
+    .project-type-btn.aerocon {
+      color: #ff8a4c;
+      border-color: rgba(255, 138, 76, 0.3);
+    }
+    
+    .project-type-btn.aerocon:hover {
       border-color: #ff8a4c;
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(255, 138, 76, 0.2);
+      box-shadow: 0 20px 60px rgba(255, 138, 76, 0.6);
+      animation: pulseGlow 1.5s ease-in-out infinite;
     }
     
-    .project-type-btn:nth-child(1):hover::after {
-      opacity: 1;
+    .project-type-btn.puff {
+      color: #4c9fff;
+      border-color: rgba(76, 159, 255, 0.3);
     }
     
-    .project-type-btn:nth-child(2):hover::after {
-      opacity: 1;
+    .project-type-btn.puff:hover {
+      border-color: #4c9fff;
+      box-shadow: 0 20px 60px rgba(76, 159, 255, 0.6);
+      animation: pulseGlow 1.5s ease-in-out infinite;
     }
     
-    .project-type-btn:nth-child(3):hover::after {
-      opacity: 1;
+    .project-type-btn.container {
+      color: #9f4cff;
+      border-color: rgba(159, 76, 255, 0.3);
     }
     
-    .project-type-btn:nth-child(4):hover::after {
-      opacity: 1;
+    .project-type-btn.container:hover {
+      border-color: #9f4cff;
+      box-shadow: 0 20px 60px rgba(159, 76, 255, 0.6);
+      animation: pulseGlow 1.5s ease-in-out infinite;
+    }
+    
+    .project-type-btn.shed {
+      color: #4cff8a;
+      border-color: rgba(76, 255, 138, 0.3);
+    }
+    
+    .project-type-btn.shed:hover {
+      border-color: #4cff8a;
+      box-shadow: 0 20px 60px rgba(76, 255, 138, 0.6);
+      animation: pulseGlow 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        filter: brightness(1);
+      }
+      50% {
+        filter: brightness(1.3);
+      }
     }
     
     .project-icon {
       margin-bottom: 0.75rem;
       display: flex;
       justify-content: center;
+      transition: all 0.4s ease;
+    }
+    
+    .project-type-btn:hover .project-icon {
+      transform: scale(1.2) rotate(5deg);
+      filter: drop-shadow(0 0 15px currentColor);
     }
     
     .project-meta {
       font-size: 0.75rem;
-      color: #4b5563;
-      font-family: 'Space Mono', monospace;
+      color: #6b7280;
+      font-family: 'Inter', sans-serif;
       margin-top: 0.5rem;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      transition: all 0.3s ease;
+    }
+    
+    .project-type-btn:hover .project-meta {
+      color: currentColor;
+      transform: scale(1.05);
     }
     
     /* Calculator Screen */
@@ -437,29 +579,27 @@
       flex: 1;
       padding: 2rem;
       background: linear-gradient(135deg, #0f1419 0%, #1a1d29 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Dynamic gradient backgrounds for each project type */
-    .calculator-screen.aerocon-bg {
-      background: linear-gradient(135deg, #1a1410 0%, #1a1d29 50%, #2d1b15 100%);
-    }
-    
-    .calculator-screen.puff-bg {
-      background: linear-gradient(135deg, #10141a 0%, #1a1d29 50%, #152d2d 100%);
-    }
-    
-    .calculator-screen.container-bg {
-      background: linear-gradient(135deg, #15101a 0%, #1a1d29 50%, #22152d 100%);
-    }
-    
-    .calculator-screen.shed-bg {
-      background: linear-gradient(135deg, #101a14 0%, #1a1d29 50%, #15 2d1b 100%);
+      transition: background 0.6s ease;
     }
     
     .calculator-screen.active {
       display: block;
+    }
+    
+    .calculator-screen.aerocon-theme {
+      background: linear-gradient(135deg, #1a0f0a 0%, #1a1410 50%, #0f1419 100%);
+    }
+    
+    .calculator-screen.puff-theme {
+      background: linear-gradient(135deg, #0a0f1a 0%, #0f1419 50%, #0a141a 100%);
+    }
+    
+    .calculator-screen.container-theme {
+      background: linear-gradient(135deg, #140a1a 0%, #1a0f1a 50%, #0f1419 100%);
+    }
+    
+    .calculator-screen.shed-theme {
+      background: linear-gradient(135deg, #0a1a0f 0%, #0f1a14 50%, #0f1419 100%);
     }
     
     .project-header {
@@ -475,11 +615,11 @@
     }
     
     .project-name {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.75rem;
+      font-weight: 600;
       color: #ff8a4c;
-      font-family: 'Bebas Neue', cursive;
-      letter-spacing: 1px;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.5px;
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -491,9 +631,9 @@
       border: 1px solid rgba(255, 138, 76, 0.2);
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      cursor: pointer;
       font-size: 0.875rem;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
       transition: all 0.2s ease;
     }
     
@@ -518,14 +658,14 @@
     }
     
     .section-title {
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.125rem;
+      font-weight: 600;
       color: #ff8a4c;
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
       border-bottom: 2px solid rgba(255, 138, 76, 0.2);
-      font-family: 'Bebas Neue', cursive;
-      letter-spacing: 1px;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.3px;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -537,13 +677,13 @@
     
     .input-group label {
       display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.875rem;
+      font-weight: 500;
       margin-bottom: 0.5rem;
       color: #9ca3af;
-      font-family: 'Space Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+      text-transform: none;
+      letter-spacing: 0.2px;
     }
     
     .input-group input {
@@ -551,10 +691,11 @@
       padding: 0.75rem;
       border: 1px solid rgba(255, 138, 76, 0.15);
       border-radius: 8px;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       background: rgba(15, 20, 25, 0.6);
       color: #e8eaed;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
       transition: all 0.2s ease;
       height: 42px;
       line-height: 1.2;
@@ -570,10 +711,11 @@
     
     .input-group small {
       display: block;
-      color: #4b5563;
-      font-size: 0.7rem;
+      color: #6b7280;
+      font-size: 0.8125rem;
       margin-top: 0.25rem;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
     }
     
     /* Toggles */
@@ -585,7 +727,6 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      cursor: pointer;
       padding: 0.75rem;
       border-radius: 8px;
       transition: all 0.2s ease;
@@ -600,14 +741,14 @@
     .toggle-label input[type="checkbox"] {
       width: 20px;
       height: 20px;
-      cursor: pointer;
       accent-color: #ff8a4c;
     }
     
     .toggle-label span {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
       color: #d1d5db;
+      font-weight: 400;
     }
     
     /* Results Section */
@@ -634,10 +775,11 @@
     .results-table th {
       padding: 1rem;
       text-align: left;
-      font-weight: 700;
+      font-weight: 600;
       color: #ff8a4c;
-      font-family: 'Bebas Neue', cursive;
-      letter-spacing: 1px;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.2px;
+      font-size: 0.9375rem;
     }
     
     .results-table th:nth-child(2),
@@ -650,8 +792,9 @@
       padding: 0.875rem 1rem;
       border-bottom: 1px solid rgba(255, 138, 76, 0.08);
       color: #d1d5db;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
       height: 52px;
       line-height: 1.2;
       vertical-align: middle;
@@ -675,10 +818,9 @@
       text-align: right;
       background: rgba(15, 20, 25, 0.8);
       color: #e8eaed;
-      cursor: text;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 500;
       height: 36px;
       line-height: 1.2;
       box-sizing: border-box;
@@ -704,9 +846,10 @@
     .results-table tfoot td {
       padding: 1rem;
       border-top: 2px solid rgba(255, 138, 76, 0.2);
-      font-family: 'Bebas Neue', cursive;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.2px;
+      font-weight: 600;
     }
     
     .gst-row {
@@ -734,14 +877,15 @@
     /* Footer */
     footer {
       background: #252932;
-      color: #6b7280;
+      color: #9ca3af;
       text-align: center;
       padding: 1.5rem;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       margin-top: 2rem;
       border-top: 1px solid rgba(255, 138, 76, 0.1);
-      font-family: 'Space Mono', monospace;
+      font-family: 'Inter', sans-serif;
       line-height: 1.8;
+      font-weight: 400;
     }
     
     footer .powered-by {
@@ -766,13 +910,13 @@
       h1 {
         font-size: 2rem;
         line-height: 1.1;
-        letter-spacing: 2px;
-        font-weight: 900;
+        letter-spacing: -0.5px;
+        font-weight: 700;
       }
       
       .subtitle {
-        font-size: 0.65rem;
-        letter-spacing: 1px;
+        font-size: 0.8125rem;
+        letter-spacing: 0.2px;
         margin-top: 0.35rem;
       }
       
@@ -803,12 +947,12 @@
       }
       
       .selection-box h2 {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         line-height: 1.2;
       }
       
       .selection-subtitle {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
         margin-bottom: 1.5rem;
       }
       
@@ -819,7 +963,7 @@
       
       .project-type-btn {
         padding: 1.5rem 1rem;
-        font-size: 1rem;
+        font-size: 1.125rem;
         min-height: 120px;
       }
       
@@ -833,7 +977,7 @@
       }
       
       .project-meta {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         margin-top: 0.35rem;
       }
       
@@ -850,7 +994,7 @@
       }
       
       .project-name {
-        font-size: 1.25rem;
+        font-size: 1.375rem;
         gap: 0.5rem;
         justify-content: flex-start;
       }
@@ -863,7 +1007,7 @@
       .change-project-btn {
         width: 100%;
         padding: 0.75rem 1rem;
-        font-size: 0.8rem;
+        font-size: 0.875rem;
         min-height: 44px;
         justify-content: center;
         display: flex;
@@ -883,7 +1027,7 @@
       }
       
       .section-title {
-        font-size: 0.95rem;
+        font-size: 1.0625rem;
         margin-bottom: 0.75rem;
         padding-bottom: 0.4rem;
       }
@@ -898,7 +1042,7 @@
       }
       
       .input-group label {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
         margin-bottom: 0.4rem;
       }
       
@@ -913,11 +1057,10 @@
       }
       
       .input-group select {
-        cursor: pointer;
       }
       
       .input-group small {
-        font-size: 0.7rem;
+        font-size: 0.8125rem;
         margin-top: 0.35rem;
       }
       
@@ -935,7 +1078,7 @@
       }
       
       .toggle-label span {
-        font-size: 0.875rem;
+        font-size: 0.9375rem;
         line-height: 1.3;
       }
       
@@ -947,7 +1090,7 @@
       }
       
       .internal-wall-entry label {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
         min-width: 55px;
       }
       
@@ -981,7 +1124,7 @@
         padding: 0.75rem 1rem;
         min-height: 48px;
         justify-content: center;
-        font-size: 0.85rem;
+        font-size: 0.9375rem;
       }
       
       .section-title {
@@ -1004,13 +1147,14 @@
       }
       
       .result-card-header {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.85rem;
-        font-weight: 700;
+        font-family: 'Manrope', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
         color: #ff8a4c;
         margin-bottom: 0.75rem;
         padding-bottom: 0.5rem;
         border-bottom: 1px solid rgba(255, 138, 76, 0.15);
+        letter-spacing: -0.2px;
       }
       
       .result-card-row {
@@ -1018,8 +1162,8 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 0.5rem;
-        font-family: 'Space Mono', monospace;
-        font-size: 0.8rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9375rem;
       }
       
       .result-card-row:last-child {
@@ -1028,21 +1172,21 @@
       
       .result-card-label {
         color: #9ca3af;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        font-size: 0.875rem;
+        text-transform: none;
+        letter-spacing: 0.2px;
       }
       
       .result-card-value {
         color: #d1d5db;
-        font-weight: 600;
+        font-weight: 500;
         text-align: right;
       }
       
       .result-card .rate-input {
         width: 100px;
         padding: 0.5rem;
-        font-size: 0.85rem;
+        font-size: 0.9375rem;
         min-height: 44px;
         height: 44px;
         border-radius: 8px;
@@ -1062,25 +1206,26 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-family: 'Bebas Neue', cursive;
-        letter-spacing: 1px;
+        font-family: 'Manrope', sans-serif;
+        letter-spacing: -0.3px;
+        font-weight: 600;
       }
       
       .total-card.subtotal {
         background: rgba(15, 20, 25, 0.6);
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
       
       .total-card.gst {
         background: rgba(255, 138, 76, 0.08);
         color: #ff8a4c;
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
       
       .total-card.grand {
         background: rgba(255, 138, 76, 0.15);
         color: #ff8a4c;
-        font-size: 1.1rem;
+        font-size: 1.125rem;
         font-weight: 700;
         padding: 1rem;
       }
@@ -1088,13 +1233,13 @@
       .total-card.per-sqft {
         background: rgba(255, 173, 122, 0.08);
         color: #ffad7a;
-        font-size: 0.9rem;
+        font-size: 0.9375rem;
       }
       
       .total-card.per-sqft-gst {
         background: rgba(255, 173, 122, 0.12);
         color: #ffad7a;
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 600;
       }
       
@@ -1110,7 +1255,7 @@
       /* Footer Mobile */
       footer {
         padding: 1.25rem 1rem;
-        font-size: 0.7rem;
+        font-size: 0.8125rem;
         margin-top: 1rem;
         line-height: 1.6;
       }
@@ -1297,10 +1442,9 @@
       color: #ff8a4c;
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-family: 'Space Mono', monospace;
-      font-weight: 600;
+      font-size: 0.875rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
@@ -1337,10 +1481,10 @@
     }
     
     .internal-wall-entry label {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: #ff8a4c;
-      font-family: 'Space Mono', monospace;
-      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
       min-width: 60px;
     }
     
@@ -1350,7 +1494,8 @@
       color: #e8eaed;
       padding: 0.75rem;
       border-radius: 8px;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
       height: 42px;
       line-height: 1.2;
       box-sizing: border-box;
@@ -1364,7 +1509,6 @@
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
  <body class="h-full">
   <div class="app-container"><!-- Header -->
@@ -1384,30 +1528,30 @@
     <div class="selection-box">
      <h2>Select Project Type</h2>
      <p class="selection-subtitle">Choose one to begin calculation</p>
-     <div class="project-types"><button type="button" class="project-type-btn" onclick="selectProject('aerocon', 10)">
+     <div class="project-types"><button type="button" class="project-type-btn aerocon" onclick="selectProject('aerocon', 10)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="28" rx="2" stroke="#ff8a4c" stroke-width="2" /> <path d="M12 12V8a2 2 0 012-2h20a2 2 0 012 2v4" stroke="#ff8a4c" stroke-width="2" /> <line x1="6" y1="24" x2="42" y2="24" stroke="#ff8a4c" stroke-width="2" /> <line x1="6" y1="32" x2="42" y2="32" stroke="#ff8a4c" stroke-width="2" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="28" rx="2" stroke="currentColor" stroke-width="2" /> <path d="M12 12V8a2 2 0 012-2h20a2 2 0 012 2v4" stroke="currentColor" stroke-width="2" /> <line x1="6" y1="24" x2="42" y2="24" stroke="currentColor" stroke-width="2" /> <line x1="6" y1="32" x2="42" y2="32" stroke="currentColor" stroke-width="2" />
         </svg>
        </div> Aerocon Cabin 
        <div class="project-meta">
         DEFAULT: 10 FT HEIGHT
-       </div></button> <button type="button" class="project-type-btn" onclick="selectProject('puff', 10)">
+       </div></button> <button type="button" class="project-type-btn puff" onclick="selectProject('puff', 10)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 16l16-8 16 8v20a2 2 0 01-2 2H10a2 2 0 01-2-2V16z" stroke="#ff8a4c" stroke-width="2" /> <path d="M8 16l16 8 16-8" stroke="#ff8a4c" stroke-width="2" /> <rect x="18" y="28" width="12" height="14" stroke="#ff8a4c" stroke-width="2" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 16l16-8 16 8v20a2 2 0 01-2 2H10a2 2 0 01-2-2V16z" stroke="currentColor" stroke-width="2" /> <path d="M8 16l16 8 16-8" stroke="currentColor" stroke-width="2" /> <rect x="18" y="28" width="12" height="14" stroke="currentColor" stroke-width="2" />
         </svg>
        </div> Puff Cabin 
        <div class="project-meta">
         DEFAULT: 10 FT HEIGHT
-       </div></button> <button type="button" class="project-type-btn" onclick="selectProject('container', 10)">
+       </div></button> <button type="button" class="project-type-btn container" onclick="selectProject('container', 10)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="20" rx="1" stroke="#ff8a4c" stroke-width="2" /> <line x1="4" y1="20" x2="44" y2="20" stroke="#ff8a4c" stroke-width="2" /> <line x1="4" y1="28" x2="44" y2="28" stroke="#ff8a4c" stroke-width="2" /> <circle cx="10" cy="24" r="2" fill="#ff8a4c" /> <circle cx="38" cy="24" r="2" fill="#ff8a4c" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="20" rx="1" stroke="currentColor" stroke-width="2" /> <line x1="4" y1="20" x2="44" y2="20" stroke="currentColor" stroke-width="2" /> <line x1="4" y1="28" x2="44" y2="28" stroke="currentColor" stroke-width="2" /> <circle cx="10" cy="24" r="2" fill="currentColor" /> <circle cx="38" cy="24" r="2" fill="currentColor" />
         </svg>
        </div> Container 
        <div class="project-meta">
         DEFAULT: 10 FT HEIGHT
-       </div></button> <button type="button" class="project-type-btn" onclick="selectProject('shed', 12)">
+       </div></button> <button type="button" class="project-type-btn shed" onclick="selectProject('shed', 12)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20l20-12 20 12v20H4V20z" stroke="#ff8a4c" stroke-width="2" /> <path d="M4 20l20 10 20-10" stroke="#ff8a4c" stroke-width="2" /> <path d="M4 26h40M4 32h40" stroke="#ff8a4c" stroke-width="2" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20l20-12 20 12v20H4V20z" stroke="currentColor" stroke-width="2" /> <path d="M4 20l20 10 20-10" stroke="currentColor" stroke-width="2" /> <path d="M4 26h40M4 32h40" stroke="currentColor" stroke-width="2" />
         </svg>
        </div> Shed 
        <div class="project-meta">
@@ -1429,7 +1573,7 @@
        <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="16" height="16" stroke="#ff8a4c" stroke-width="2" /> <line x1="2" y1="10" x2="18" y2="10" stroke="#ff8a4c" stroke-width="2" /> <line x1="10" y1="2" x2="10" y2="18" stroke="#ff8a4c" stroke-width="2" />
        </svg> Basic Dimensions
       </div>
-      <div class="input-group"><label for="unit-select">Measurement Unit</label> <select id="unit-select" onchange="handleUnitChange()" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255, 138, 76, 0.15); border-radius: 8px; font-size: 0.875rem; background: rgba(15, 20, 25, 0.6); color: #e8eaed; font-family: 'Space Mono', monospace; height: 42px; cursor: pointer;"> <option value="feet">Feet (ft)</option> <option value="mm">Millimeters (mm)</option> <option value="meter">Meters (m)</option> </select> <small>Select your preferred measurement unit for all measurements</small>
+      <div class="input-group"><label for="unit-select">Measurement Unit</label> <select id="unit-select" onchange="handleUnitChange()" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255, 138, 76, 0.15); border-radius: 8px; font-size: 0.9375rem; background: rgba(15, 20, 25, 0.6); color: #e8eaed; font-family: 'Inter', sans-serif; font-weight: 400; height: 42px;"> <option value="feet">Feet (ft)</option> <option value="mm">Millimeters (mm)</option> <option value="meter">Meters (m)</option> </select> <small>Select your preferred measurement unit for all measurements</small>
       </div>
       <div class="input-group"><label for="length">Length (<span id="length-unit">ft</span>)</label> <input type="number" id="length" step="0.1" value="" placeholder="Enter length" oninput="calculate()">
       </div>
@@ -1473,6 +1617,8 @@
       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-tiles" onchange="calculate()"> <span>Tiles + Skirting</span> </label>
       </div>
       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-false-ceiling" onchange="calculate()"> <span>False Ceiling</span> </label>
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-false-floor" onchange="calculate()"> <span>False Floor</span> </label>
       </div>
       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-insulation" onchange="calculate()"> <span>Insulation</span> </label>
       </div>
@@ -1709,11 +1855,11 @@
       const calculatorScreen = document.getElementById('calculator-screen');
       calculatorScreen.classList.add('active');
       
-      // Remove all project background classes
-      calculatorScreen.classList.remove('aerocon-bg', 'puff-bg', 'container-bg', 'shed-bg');
+      // Remove all theme classes first
+      calculatorScreen.classList.remove('aerocon-theme', 'puff-theme', 'container-theme', 'shed-theme');
       
-      // Add specific project background class
-      calculatorScreen.classList.add(`${type}-bg`);
+      // Add the specific project theme class
+      calculatorScreen.classList.add(`${type}-theme`);
       
       updateInternalWalls();
       calculate();
@@ -1723,9 +1869,7 @@
       document.getElementById('selection-screen').style.display = 'flex';
       const calculatorScreen = document.getElementById('calculator-screen');
       calculatorScreen.classList.remove('active');
-      
-      // Remove all project background classes
-      calculatorScreen.classList.remove('aerocon-bg', 'puff-bg', 'container-bg', 'shed-bg');
+      calculatorScreen.classList.remove('aerocon-theme', 'puff-theme', 'container-theme', 'shed-theme');
       
       currentProject = null;
       
@@ -1912,10 +2056,11 @@
         const unitLabel = currentUnit === 'feet' ? 'ft' : (currentUnit === 'mm' ? 'mm' : 'm');
         const helperText = document.createElement('small');
         helperText.style.color = '#6b7280';
-        helperText.style.fontSize = '0.7rem';
+        helperText.style.fontSize = '0.8125rem';
         helperText.style.display = 'block';
         helperText.style.marginBottom = '0.75rem';
-        helperText.style.fontFamily = 'Space Mono, monospace';
+        helperText.style.fontFamily = 'Inter, sans-serif';
+        helperText.style.fontWeight = '400';
         helperText.textContent = `Enter length (${unitLabel}) for each internal wall:`;
         container.appendChild(helperText);
       }
@@ -2089,6 +2234,18 @@
         });
       }
       
+      if (document.getElementById('opt-false-floor').checked) {
+        const falseFloorArea = length * width;
+        const displayFalseFloorArea = convertFromFeet(falseFloorArea, currentUnit);
+        results.push({
+          name: 'False Floor',
+          quantity: displayFalseFloorArea.toFixed(decimalPlaces),
+          unit: displayUnit,
+          rateId: 'rate-false-floor',
+          defaultRate: ''
+        });
+      }
+      
       if (document.getElementById('opt-insulation').checked) {
         const displayInsulationArea = convertFromFeet(roofArea, currentUnit);
         results.push({
@@ -2163,7 +2320,7 @@
           <td>${item.name}</td>
           <td>${item.quantity} ${item.unit}</td>
           <td><input type="number" class="rate-input" id="${item.rateId}" value="${currentRate}" step="0.01" placeholder="0"></td>
-          <td>��${amount.toFixed(2)}</td>
+          <td>₹${amount.toFixed(2)}</td>
         `;
         
         tbody.appendChild(row);
@@ -2341,15 +2498,15 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         z-index: 10000;
         text-align: center;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Inter', sans-serif;
         max-width: 90%;
       `;
       
       message.innerHTML = `
-        <div style="font-size: 1.2rem; font-weight: 700; color: #ff8a4c; margin-bottom: 1rem;">
+        <div style="font-size: 1.25rem; font-weight: 600; color: #ff8a4c; margin-bottom: 1rem; font-family: 'Manrope', sans-serif;">
           📄 Save as PDF
         </div>
-        <div style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+        <div style="font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5rem;">
           To save this calculation as PDF:<br><br>
           1. Click "Print" button or press <strong>Ctrl+P</strong> (Windows) / <strong>Cmd+P</strong> (Mac)<br>
           2. In print dialog, select <strong>"Save as PDF"</strong> as destination<br>
@@ -2361,9 +2518,9 @@
           border: none;
           padding: 0.75rem 1.5rem;
           border-radius: 8px;
-          cursor: pointer;
-          font-family: 'Space Mono', monospace;
-          font-weight: 600;
+          cursor: none;
+          font-family: 'Inter', sans-serif;
+          font-weight: 500;
           font-size: 0.875rem;
           margin-right: 0.5rem;
         ">Open Print Dialog</button>
@@ -2373,9 +2530,9 @@
           border: 1px solid rgba(255, 138, 76, 0.3);
           padding: 0.75rem 1.5rem;
           border-radius: 8px;
-          cursor: pointer;
-          font-family: 'Space Mono', monospace;
-          font-weight: 600;
+          cursor: none;
+          font-family: 'Inter', sans-serif;
+          font-weight: 500;
           font-size: 0.875rem;
         ">Close</button>
       `;
@@ -2383,5 +2540,5 @@
       document.body.appendChild(message);
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1e10d504ec1794',t:'MTc2OTA3NDU3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1e7bea81bc7fb3',t:'MTc2OTA3ODk2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
