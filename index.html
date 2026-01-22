@@ -1,0 +1,2066 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal Calculator - Contrive Interior &amp; Construction</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Mono:wght@400;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Remove number input spinners */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1a1d29 0%, #0f1419 100%);
+      color: #e8eaed;
+      line-height: 1.5;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    
+    /* Light Mode */
+    body.light-mode {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      color: #1a202c;
+    }
+    
+    body.light-mode header {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+      border-bottom: 1px solid rgba(255, 138, 76, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    body.light-mode .selection-screen {
+      background: #e8ecf1;
+    }
+    
+    body.light-mode .selection-box {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+      border: 1px solid rgba(255, 138, 76, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    body.light-mode .selection-subtitle {
+      color: #4b5563;
+    }
+    
+    body.light-mode .project-type-btn {
+      background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+      border: 2px solid rgba(255, 138, 76, 0.25);
+    }
+    
+    body.light-mode .project-meta {
+      color: #6b7280;
+    }
+    
+    body.light-mode .calculator-screen {
+      background: #e8ecf1;
+    }
+    
+    body.light-mode .project-header {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+      border: 1px solid rgba(255, 138, 76, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    body.light-mode .change-project-btn {
+      background: rgba(255, 138, 76, 0.1);
+      border: 1px solid rgba(255, 138, 76, 0.25);
+    }
+    
+    body.light-mode .input-section {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+      border: 1px solid rgba(255, 138, 76, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    body.light-mode .input-group label {
+      color: #4b5563;
+    }
+    
+    body.light-mode .input-group input {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 138, 76, 0.2);
+      color: #1a202c;
+    }
+    
+    body.light-mode .input-group input:focus {
+      background: #ffffff;
+    }
+    
+    body.light-mode .input-group small {
+      color: #6b7280;
+    }
+    
+    body.light-mode .toggle-label span {
+      color: #374151;
+    }
+    
+    body.light-mode .results-section {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+      border: 1px solid rgba(255, 138, 76, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    body.light-mode .results-table td {
+      color: #374151;
+      border-bottom: 1px solid rgba(255, 138, 76, 0.1);
+    }
+    
+    body.light-mode .rate-input {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 138, 76, 0.3);
+      color: #1a202c;
+    }
+    
+    body.light-mode .rate-input:focus {
+      background: #ffffff;
+    }
+    
+    body.light-mode .rate-input::placeholder {
+      color: #9ca3af;
+    }
+    
+    body.light-mode .results-table tfoot {
+      background: rgba(255, 138, 76, 0.05);
+    }
+    
+    body.light-mode footer {
+      background: #ffffff;
+      border-top: 1px solid rgba(255, 138, 76, 0.15);
+    }
+    
+    body.light-mode .internal-wall-entry input {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 138, 76, 0.2);
+      color: #1a202c;
+    }
+    
+    body.light-mode .internal-wall-entry input:focus {
+      background: #ffffff;
+    }
+    
+    body.light-mode select {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 138, 76, 0.2);
+      color: #1a202c;
+    }
+    
+    body.light-mode select:focus {
+      background: #ffffff;
+      border-color: #ff8a4c;
+      box-shadow: 0 0 0 3px rgba(255, 138, 76, 0.1);
+      outline: none;
+    }
+    
+    .app-container {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #252932 0%, #1a1d29 100%);
+      color: white;
+      padding: 2rem 2rem;
+      border-bottom: 1px solid rgba(255, 138, 76, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+    }
+    
+    .header-text {
+      width: 100%;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(255, 138, 76, 0.1);
+      border: 1px solid rgba(255, 138, 76, 0.25);
+      color: #ff8a4c;
+      padding: 0.625rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-family: 'Space Mono', monospace;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .theme-toggle:hover {
+      background: rgba(255, 138, 76, 0.2);
+      border-color: #ff8a4c;
+      transform: translateY(-2px);
+    }
+    
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.25rem;
+    }
+    
+    .subtitle {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+    }
+    
+    /* Project Type Selection Screen */
+    .selection-screen {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: #0f1419;
+    }
+    
+    .selection-box {
+      background: linear-gradient(135deg, #252932 0%, #1a1d29 100%);
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      max-width: 700px;
+      width: 100%;
+      border: 1px solid rgba(255, 138, 76, 0.12);
+    }
+    
+    .selection-box h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .selection-subtitle {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      font-family: 'Space Mono', monospace;
+    }
+    
+    .project-types {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .project-type-btn {
+      background: linear-gradient(135deg, #1a1d29 0%, #252932 100%);
+      border: 2px solid rgba(255, 138, 76, 0.2);
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #ff8a4c;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-type-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 138, 76, 0.08), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .project-type-btn:hover::before {
+      left: 100%;
+    }
+    
+    .project-type-btn:hover {
+      border-color: #ff8a4c;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(255, 138, 76, 0.2);
+    }
+    
+    .project-icon {
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .project-meta {
+      font-size: 0.75rem;
+      color: #4b5563;
+      font-family: 'Space Mono', monospace;
+      margin-top: 0.5rem;
+    }
+    
+    /* Calculator Screen */
+    .calculator-screen {
+      display: none;
+      flex: 1;
+      padding: 2rem;
+      background: #0f1419;
+    }
+    
+    .calculator-screen.active {
+      display: block;
+    }
+    
+    .project-header {
+      background: linear-gradient(135deg, #252932 0%, #1a1d29 100%);
+      padding: 1.5rem 2rem;
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 138, 76, 0.12);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .project-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ff8a4c;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .change-project-btn {
+      background: rgba(255, 138, 76, 0.08);
+      color: #ff8a4c;
+      border: 1px solid rgba(255, 138, 76, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-family: 'Space Mono', monospace;
+      transition: all 0.2s ease;
+    }
+    
+    .change-project-btn:hover {
+      background: rgba(255, 138, 76, 0.15);
+      border-color: #ff8a4c;
+    }
+    
+    .calculator-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    /* Input Sections */
+    .input-section {
+      background: linear-gradient(135deg, #1a1d29 0%, #252932 100%);
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 138, 76, 0.12);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ff8a4c;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(255, 138, 76, 0.2);
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    
+    .input-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #9ca3af;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(255, 138, 76, 0.15);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      background: rgba(15, 20, 25, 0.6);
+      color: #e8eaed;
+      font-family: 'Space Mono', monospace;
+      transition: all 0.2s ease;
+      height: 42px;
+      line-height: 1.2;
+      box-sizing: border-box;
+    }
+    
+    .input-group input:focus {
+      outline: none;
+      border-color: #ff8a4c;
+      box-shadow: 0 0 0 3px rgba(255, 138, 76, 0.1);
+      background: rgba(15, 20, 25, 0.8);
+    }
+    
+    .input-group small {
+      display: block;
+      color: #4b5563;
+      font-size: 0.7rem;
+      margin-top: 0.25rem;
+      font-family: 'Space Mono', monospace;
+    }
+    
+    /* Toggles */
+    .toggle-group {
+      margin-bottom: 0.75rem;
+    }
+    
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      padding: 0.75rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    .toggle-label:hover {
+      background: rgba(255, 138, 76, 0.05);
+      border-color: rgba(255, 138, 76, 0.15);
+    }
+    
+    .toggle-label input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #ff8a4c;
+    }
+    
+    .toggle-label span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+    
+    /* Results Section */
+    .results-section {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #1a1d29 0%, #252932 100%);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 138, 76, 0.12);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+    
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    
+    .results-table thead {
+      background: rgba(255, 138, 76, 0.08);
+      border-bottom: 2px solid rgba(255, 138, 76, 0.2);
+    }
+    
+    .results-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 700;
+      color: #ff8a4c;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+    }
+    
+    .results-table th:nth-child(2),
+    .results-table th:nth-child(3),
+    .results-table th:nth-child(4) {
+      text-align: right;
+    }
+    
+    .results-table td {
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid rgba(255, 138, 76, 0.08);
+      color: #d1d5db;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      height: 52px;
+      line-height: 1.2;
+      vertical-align: middle;
+    }
+    
+    .results-table td:nth-child(2),
+    .results-table td:nth-child(3),
+    .results-table td:nth-child(4) {
+      text-align: right;
+    }
+    
+    .results-table tbody tr:hover {
+      background: rgba(255, 138, 76, 0.03);
+    }
+    
+    .rate-input {
+      width: 110px;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid rgba(255, 138, 76, 0.25);
+      border-radius: 6px;
+      text-align: right;
+      background: rgba(15, 20, 25, 0.8);
+      color: #e8eaed;
+      cursor: text;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      height: 36px;
+      line-height: 1.2;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .rate-input::placeholder {
+      color: #4b5563;
+    }
+    
+    .rate-input:focus {
+      outline: none;
+      border-color: #ff8a4c;
+      box-shadow: 0 0 0 2px rgba(255, 138, 76, 0.15);
+      background: rgba(15, 20, 25, 0.95);
+    }
+    
+    .results-table tfoot {
+      background: rgba(0, 0, 0, 0.3);
+      font-weight: 700;
+    }
+    
+    .results-table tfoot td {
+      padding: 1rem;
+      border-top: 2px solid rgba(255, 138, 76, 0.2);
+      font-family: 'Bebas Neue', cursive;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+    
+    .gst-row {
+      background: rgba(255, 138, 76, 0.08) !important;
+      color: #ff8a4c !important;
+    }
+    
+    .grand-total-row {
+      background: rgba(255, 138, 76, 0.15) !important;
+      color: #ff8a4c !important;
+      font-size: 1.1rem !important;
+    }
+    
+    .per-sqft-row {
+      background: rgba(255, 173, 122, 0.08) !important;
+      color: #ffad7a !important;
+    }
+    
+    .per-sqft-row-with-gst {
+      background: rgba(255, 173, 122, 0.12) !important;
+      color: #ffad7a !important;
+      font-weight: 600 !important;
+    }
+    
+    /* Footer */
+    footer {
+      background: #252932;
+      color: #6b7280;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 138, 76, 0.1);
+      font-family: 'Space Mono', monospace;
+      line-height: 1.8;
+    }
+    
+    footer .powered-by {
+      color: #ff8a4c;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    
+    footer .contact {
+      color: #ffad7a;
+      font-weight: 500;
+    }
+    
+    /* Responsive - Mobile First */
+    @media (max-width: 768px) {
+      /* Header Mobile Optimization */
+      header {
+        padding: 1.25rem 1rem;
+        position: relative;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        line-height: 1.1;
+        letter-spacing: 2px;
+        font-weight: 900;
+      }
+      
+      .subtitle {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+        margin-top: 0.35rem;
+      }
+      
+      .theme-toggle {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .theme-toggle svg {
+        width: 16px;
+        height: 16px;
+      }
+      
+      /* Selection Screen Mobile */
+      .selection-screen {
+        padding: 1rem;
+      }
+      
+      .selection-box {
+        padding: 1.5rem;
+        border-radius: 16px;
+      }
+      
+      .selection-box h2 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+      
+      .selection-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .project-types {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .project-type-btn {
+        padding: 1.5rem 1rem;
+        font-size: 1rem;
+        min-height: 120px;
+      }
+      
+      .project-icon {
+        margin-bottom: 0.5rem;
+      }
+      
+      .project-icon svg {
+        width: 36px;
+        height: 36px;
+      }
+      
+      .project-meta {
+        font-size: 0.7rem;
+        margin-top: 0.35rem;
+      }
+      
+      /* Calculator Screen Mobile */
+      .calculator-screen {
+        padding: 1rem;
+      }
+      
+      .project-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+        padding: 1rem;
+      }
+      
+      .project-name {
+        font-size: 1.25rem;
+        gap: 0.5rem;
+        justify-content: flex-start;
+      }
+      
+      .project-name svg {
+        width: 24px;
+        height: 24px;
+      }
+      
+      .change-project-btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+        min-height: 44px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+      }
+      
+      /* Single Column Layout */
+      .calculator-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      /* Input Sections Mobile */
+      .input-section {
+        padding: 1rem;
+        border-radius: 12px;
+      }
+      
+      .section-title {
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.4rem;
+      }
+      
+      .section-title svg {
+        width: 18px;
+        height: 18px;
+      }
+      
+      .input-group {
+        margin-bottom: 1rem;
+      }
+      
+      .input-group label {
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
+      }
+      
+      .input-group input,
+      .input-group select {
+        width: 100%;
+        padding: 0.875rem;
+        font-size: 1rem;
+        min-height: 48px;
+        height: 48px;
+        border-radius: 10px;
+      }
+      
+      .input-group select {
+        cursor: pointer;
+      }
+      
+      .input-group small {
+        font-size: 0.7rem;
+        margin-top: 0.35rem;
+      }
+      
+      /* Toggle Labels Mobile */
+      .toggle-label {
+        padding: 0.875rem;
+        min-height: 48px;
+        gap: 0.875rem;
+      }
+      
+      .toggle-label input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+      
+      .toggle-label span {
+        font-size: 0.875rem;
+        line-height: 1.3;
+      }
+      
+      /* Internal Walls Mobile */
+      .internal-wall-entry {
+        grid-template-columns: auto 1fr;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      
+      .internal-wall-entry label {
+        font-size: 0.75rem;
+        min-width: 55px;
+      }
+      
+      .internal-wall-entry input {
+        min-height: 48px;
+        height: 48px;
+        padding: 0.875rem;
+        font-size: 1rem;
+      }
+      
+      /* Results Section Mobile - Card Style */
+      .results-section {
+        padding: 1rem;
+        border-radius: 12px;
+      }
+      
+      /* Hide traditional table on mobile, use card layout */
+      .results-table {
+        display: none;
+      }
+      
+      /* Action Buttons Mobile */
+      .action-buttons {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      
+      .action-btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        min-height: 48px;
+        justify-content: center;
+        font-size: 0.85rem;
+      }
+      
+      .section-title {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem;
+      }
+      
+      /* Mobile Card Layout */
+      .results-mobile-cards {
+        display: block;
+      }
+      
+      .result-card {
+        background: rgba(15, 20, 25, 0.4);
+        border: 1px solid rgba(255, 138, 76, 0.15);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+      }
+      
+      .result-card-header {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #ff8a4c;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 138, 76, 0.15);
+      }
+      
+      .result-card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+      }
+      
+      .result-card-row:last-child {
+        margin-bottom: 0;
+      }
+      
+      .result-card-label {
+        color: #9ca3af;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .result-card-value {
+        color: #d1d5db;
+        font-weight: 600;
+        text-align: right;
+      }
+      
+      .result-card .rate-input {
+        width: 100px;
+        padding: 0.5rem;
+        font-size: 0.85rem;
+        min-height: 44px;
+        height: 44px;
+        border-radius: 8px;
+      }
+      
+      /* Mobile Totals */
+      .results-mobile-totals {
+        display: block;
+        margin-top: 1rem;
+      }
+      
+      .total-card {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 0.875rem 1rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 1px;
+      }
+      
+      .total-card.subtotal {
+        background: rgba(15, 20, 25, 0.6);
+        font-size: 0.95rem;
+      }
+      
+      .total-card.gst {
+        background: rgba(255, 138, 76, 0.08);
+        color: #ff8a4c;
+        font-size: 0.95rem;
+      }
+      
+      .total-card.grand {
+        background: rgba(255, 138, 76, 0.15);
+        color: #ff8a4c;
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: 1rem;
+      }
+      
+      .total-card.per-sqft {
+        background: rgba(255, 173, 122, 0.08);
+        color: #ffad7a;
+        font-size: 0.9rem;
+      }
+      
+      .total-card.per-sqft-gst {
+        background: rgba(255, 173, 122, 0.12);
+        color: #ffad7a;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      
+      .total-card-label {
+        flex: 1;
+      }
+      
+      .total-card-value {
+        text-align: right;
+        font-weight: 700;
+      }
+      
+      /* Footer Mobile */
+      footer {
+        padding: 1.25rem 1rem;
+        font-size: 0.7rem;
+        margin-top: 1rem;
+        line-height: 1.6;
+      }
+      
+      footer .powered-by {
+        margin-top: 0.35rem;
+      }
+      
+      /* Light Mode Mobile Adjustments */
+      body.light-mode .result-card {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 138, 76, 0.2);
+      }
+      
+      body.light-mode .result-card-value {
+        color: #374151;
+      }
+      
+      body.light-mode .total-card.subtotal {
+        background: rgba(255, 255, 255, 0.8);
+      }
+      
+      body.light-mode .result-card .rate-input {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(255, 138, 76, 0.3);
+        color: #1a202c;
+      }
+    }
+    
+    /* Print Styles - Only show results section */
+    @media print {
+      /* Hide everything except results */
+      header,
+      .theme-toggle,
+      footer,
+      .selection-screen,
+      .project-header,
+      .input-section,
+      .change-project-btn,
+      .action-buttons {
+        display: none !important;
+      }
+      
+      /* Show only calculator screen */
+      .calculator-screen {
+        display: block !important;
+        padding: 0 !important;
+        background: white !important;
+      }
+      
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      
+      .calculator-content {
+        display: block !important;
+      }
+      
+      /* Style results section for print */
+      .results-section {
+        background: white !important;
+        border: 2px solid #333 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        padding: 1.5rem !important;
+      }
+      
+      .section-title {
+        color: #333 !important;
+        border-color: #333 !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      .section-title svg {
+        stroke: #333 !important;
+      }
+      
+      /* Print table styles */
+      .results-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      .results-table th {
+        background: #f5f5f5 !important;
+        color: #333 !important;
+        border: 1px solid #333 !important;
+        padding: 0.75rem !important;
+      }
+      
+      .results-table td {
+        border: 1px solid #333 !important;
+        color: #333 !important;
+        padding: 0.75rem !important;
+      }
+      
+      .results-table tfoot td {
+        font-weight: 700;
+        background: #f5f5f5 !important;
+        color: #333 !important;
+      }
+      
+      .gst-row td {
+        background: #ffe8dc !important;
+        color: #333 !important;
+      }
+      
+      .grand-total-row td {
+        background: #ffd4bf !important;
+        color: #333 !important;
+        font-size: 1.1rem !important;
+      }
+      
+      .per-sqft-row td {
+        background: #fff5ed !important;
+        color: #333 !important;
+      }
+      
+      .per-sqft-row-with-gst td {
+        background: #ffead9 !important;
+        color: #333 !important;
+      }
+      
+      /* Hide rate inputs in print, show values */
+      .rate-input {
+        border: none !important;
+        background: transparent !important;
+        color: #333 !important;
+        padding: 0 !important;
+        text-align: right !important;
+      }
+      
+      /* Add print header */
+      .results-section::before {
+        content: "Contrive Interior & Construction - Calculation Results";
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #333;
+      }
+      
+      /* Mobile cards - hide in print on desktop */
+      .results-mobile-cards,
+      .results-mobile-totals {
+        display: none !important;
+      }
+    }
+    
+    /* Desktop: Show table, hide mobile cards */
+    @media (min-width: 769px) {
+      .results-mobile-cards {
+        display: none;
+      }
+      
+      .results-mobile-totals {
+        display: none;
+      }
+      
+      .results-table {
+        display: table;
+      }
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    /* Action buttons for Print and PDF */
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+    .action-btn {
+      background: rgba(255, 138, 76, 0.1);
+      border: 1px solid rgba(255, 138, 76, 0.3);
+      color: #ff8a4c;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .action-btn:hover {
+      background: rgba(255, 138, 76, 0.2);
+      border-color: #ff8a4c;
+      transform: translateY(-2px);
+    }
+    
+    .action-btn svg {
+      flex-shrink: 0;
+    }
+    
+    body.light-mode .action-btn {
+      background: rgba(255, 138, 76, 0.08);
+      border: 1px solid rgba(255, 138, 76, 0.25);
+    }
+    
+    body.light-mode .action-btn:hover {
+      background: rgba(255, 138, 76, 0.15);
+      border-color: #ff8a4c;
+    }
+    
+    /* Internal walls dynamic input */
+    .internal-wall-entry {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .internal-wall-entry label {
+      font-size: 0.8rem;
+      color: #ff8a4c;
+      font-family: 'Space Mono', monospace;
+      font-weight: 600;
+      min-width: 60px;
+    }
+    
+    .internal-wall-entry input {
+      background: rgba(15, 20, 25, 0.6);
+      border: 1px solid rgba(255, 138, 76, 0.15);
+      color: #e8eaed;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-family: 'Space Mono', monospace;
+      height: 42px;
+      line-height: 1.2;
+      box-sizing: border-box;
+    }
+    
+    .internal-wall-entry input:focus {
+      border-color: #ff8a4c;
+      box-shadow: 0 0 0 3px rgba(255, 138, 76, 0.1);
+      background: rgba(15, 20, 25, 0.8);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="app-container"><!-- Header -->
+   <header><button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">
+     <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+     </svg>
+     <svg id="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+     </svg><span id="theme-text">Light</span> </button>
+    <div class="header-text">
+     <h1 id="company-name">Contrive Interior &amp; Construction</h1>
+     <div class="subtitle">
+      Internal Calculation Tool
+     </div>
+    </div>
+   </header><!-- Project Type Selection Screen -->
+   <div id="selection-screen" class="selection-screen">
+    <div class="selection-box">
+     <h2>Select Project Type</h2>
+     <p class="selection-subtitle">Choose one to begin calculation</p>
+     <div class="project-types"><button type="button" class="project-type-btn" onclick="selectProject('aerocon', 10)">
+       <div class="project-icon">
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="28" rx="2" stroke="#ff8a4c" stroke-width="2" /> <path d="M12 12V8a2 2 0 012-2h20a2 2 0 012 2v4" stroke="#ff8a4c" stroke-width="2" /> <line x1="6" y1="24" x2="42" y2="24" stroke="#ff8a4c" stroke-width="2" /> <line x1="6" y1="32" x2="42" y2="32" stroke="#ff8a4c" stroke-width="2" />
+        </svg>
+       </div> Aerocon Cabin 
+       <div class="project-meta">
+        DEFAULT: 10 FT HEIGHT
+       </div></button> <button type="button" class="project-type-btn" onclick="selectProject('puff', 10)">
+       <div class="project-icon">
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 16l16-8 16 8v20a2 2 0 01-2 2H10a2 2 0 01-2-2V16z" stroke="#ff8a4c" stroke-width="2" /> <path d="M8 16l16 8 16-8" stroke="#ff8a4c" stroke-width="2" /> <rect x="18" y="28" width="12" height="14" stroke="#ff8a4c" stroke-width="2" />
+        </svg>
+       </div> Puff Cabin 
+       <div class="project-meta">
+        DEFAULT: 10 FT HEIGHT
+       </div></button> <button type="button" class="project-type-btn" onclick="selectProject('container', 10)">
+       <div class="project-icon">
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="20" rx="1" stroke="#ff8a4c" stroke-width="2" /> <line x1="4" y1="20" x2="44" y2="20" stroke="#ff8a4c" stroke-width="2" /> <line x1="4" y1="28" x2="44" y2="28" stroke="#ff8a4c" stroke-width="2" /> <circle cx="10" cy="24" r="2" fill="#ff8a4c" /> <circle cx="38" cy="24" r="2" fill="#ff8a4c" />
+        </svg>
+       </div> Container 
+       <div class="project-meta">
+        DEFAULT: 10 FT HEIGHT
+       </div></button> <button type="button" class="project-type-btn" onclick="selectProject('shed', 12)">
+       <div class="project-icon">
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20l20-12 20 12v20H4V20z" stroke="#ff8a4c" stroke-width="2" /> <path d="M4 20l20 10 20-10" stroke="#ff8a4c" stroke-width="2" /> <path d="M4 26h40M4 32h40" stroke="#ff8a4c" stroke-width="2" />
+        </svg>
+       </div> Shed 
+       <div class="project-meta">
+        DEFAULT: 12 FT HEIGHT
+       </div></button>
+     </div>
+    </div>
+   </div><!-- Calculator Screen -->
+   <div id="calculator-screen" class="calculator-screen">
+    <div class="project-header">
+     <div class="project-name">
+      <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="24" height="20" rx="1" stroke="#ff8a4c" stroke-width="2" /> <line x1="4" y1="16" x2="28" y2="16" stroke="#ff8a4c" stroke-width="2" />
+      </svg><span id="current-project-name">Aerocon Cabin</span>
+     </div><button type="button" class="change-project-btn" onclick="changeProject()">← CHANGE TYPE</button>
+    </div>
+    <div class="calculator-content"><!-- Basic Dimensions -->
+     <div class="input-section">
+      <div class="section-title">
+       <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="16" height="16" stroke="#ff8a4c" stroke-width="2" /> <line x1="2" y1="10" x2="18" y2="10" stroke="#ff8a4c" stroke-width="2" /> <line x1="10" y1="2" x2="10" y2="18" stroke="#ff8a4c" stroke-width="2" />
+       </svg> Basic Dimensions
+      </div>
+      <div class="input-group"><label for="unit-select">Measurement Unit</label> <select id="unit-select" onchange="handleUnitChange()" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255, 138, 76, 0.15); border-radius: 8px; font-size: 0.875rem; background: rgba(15, 20, 25, 0.6); color: #e8eaed; font-family: 'Space Mono', monospace; height: 42px; cursor: pointer;"> <option value="feet">Feet (ft)</option> <option value="mm">Millimeters (mm)</option> <option value="meter">Meters (m)</option> </select> <small>Select your preferred measurement unit for all measurements</small>
+      </div>
+      <div class="input-group"><label for="length">Length (<span id="length-unit">ft</span>)</label> <input type="number" id="length" step="0.1" value="20" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="width">Width (<span id="width-unit">ft</span>)</label> <input type="number" id="width" step="0.1" value="12" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="height">Height (<span id="height-unit">ft</span>) - Editable</label> <input type="number" id="height" step="0.1" value="10" oninput="calculate()">
+      </div>
+     </div><!-- Doors & Windows -->
+     <div class="input-section">
+      <div class="section-title">
+       <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="2" width="6" height="16" stroke="#ff8a4c" stroke-width="2" /> <rect x="11" y="5" width="6" height="10" stroke="#ff8a4c" stroke-width="2" />
+       </svg> Doors &amp; Windows
+      </div>
+      <div class="input-group"><label for="num-doors">Number of Doors</label> <input type="number" id="num-doors" min="0" value="1" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="door-length">Door Length (<span id="door-length-unit">ft</span>)</label> <input type="number" id="door-length" step="0.1" value="7" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="door-width">Door Width (<span id="door-width-unit">ft</span>)</label> <input type="number" id="door-width" step="0.1" value="3" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="num-windows">Number of Windows</label> <input type="number" id="num-windows" min="0" value="2" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="window-length">Window Length (<span id="window-length-unit">ft</span>)</label> <input type="number" id="window-length" step="0.1" value="4" oninput="calculate()">
+      </div>
+      <div class="input-group"><label for="window-width">Window Width (<span id="window-width-unit">ft</span>)</label> <input type="number" id="window-width" step="0.1" value="3" oninput="calculate()">
+      </div>
+     </div><!-- Internal Walls -->
+     <div class="input-section">
+      <div class="section-title">
+       <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="2" x2="10" y2="18" stroke="#ff8a4c" stroke-width="3" /> <line x1="6" y1="6" x2="14" y2="6" stroke="#ff8a4c" stroke-width="2" /> <line x1="6" y1="14" x2="14" y2="14" stroke="#ff8a4c" stroke-width="2" />
+       </svg> Internal Partition Walls
+      </div>
+      <div class="input-group"><label for="num-internal-walls">Number of Internal Walls</label> <input type="number" id="num-internal-walls" min="0" max="20" value="0" oninput="updateInternalWalls()">
+      </div>
+      <div id="internal-walls-container"></div>
+     </div><!-- Optional Components -->
+     <div class="input-section">
+      <div class="section-title">
+       <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="8" stroke="#ff8a4c" stroke-width="2" /> <path d="M7 10l2 2 4-4" stroke="#ff8a4c" stroke-width="2" />
+       </svg> Optional Components
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-tiles" onchange="calculate()"> <span>Tiles + Skirting</span> </label>
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-false-ceiling" onchange="calculate()"> <span>False Ceiling</span> </label>
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-insulation" onchange="calculate()"> <span>Insulation</span> </label>
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-toilet" onchange="calculate()"> <span>Toilet Unit</span> </label>
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-kitchen" onchange="calculate()"> <span>Kitchen</span> </label>
+      </div>
+      <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="opt-cement-fiber" onchange="calculate()"> <span>Cement Fiber Plank</span> </label>
+      </div>
+     </div><!-- Results Table -->
+     <div class="results-section">
+      <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+       <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="16" height="16" rx="1" stroke="#ff8a4c" stroke-width="2" /> <text x="10" y="13" text-anchor="middle" fill="#ff8a4c" font-size="10" font-weight="bold">
+          ₹
+         </text>
+        </svg> Calculation Results
+       </div>
+       <div class="action-buttons"><button type="button" class="action-btn" onclick="printCalculation()">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> <rect x="6" y="14" width="12" height="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg> Print </button> <button type="button" class="action-btn" onclick="downloadPDF()">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg> Save PDF </button>
+       </div>
+      </div><!-- Desktop Table -->
+      <table class="results-table">
+       <thead>
+        <tr>
+         <th>Component</th>
+         <th>Quantity</th>
+         <th>Rate</th>
+         <th>Amount</th>
+        </tr>
+       </thead>
+       <tbody id="results-body"><!-- Results will be populated here -->
+       </tbody>
+       <tfoot>
+        <tr>
+         <td colspan="3" style="font-weight: 600;">Subtotal (Without GST)</td>
+         <td id="subtotal" style="font-weight: 600;">₹0.00</td>
+        </tr>
+        <tr class="gst-row">
+         <td colspan="3">GST @18%</td>
+         <td id="gst-amount">₹0.00</td>
+        </tr>
+        <tr class="grand-total-row">
+         <td colspan="3">Grand Total (With GST)</td>
+         <td id="grand-total">₹0.00</td>
+        </tr>
+        <tr class="per-sqft-row">
+         <td colspan="3">Per Sq.Ft Cost (Without GST)</td>
+         <td id="per-sqft-cost-without-gst">₹0.00</td>
+        </tr>
+        <tr class="per-sqft-row-with-gst">
+         <td colspan="3">Per Sq.Ft Cost (With GST)</td>
+         <td id="per-sqft-cost">₹0.00</td>
+        </tr>
+       </tfoot>
+      </table><!-- Mobile Card Layout -->
+      <div class="results-mobile-cards" id="results-mobile-cards"><!-- Mobile cards will be populated here -->
+      </div><!-- Mobile Totals -->
+      <div class="results-mobile-totals">
+       <div class="total-card subtotal"><span class="total-card-label">Subtotal (Without GST)</span> <span class="total-card-value" id="subtotal-mobile">₹0.00</span>
+       </div>
+       <div class="total-card gst"><span class="total-card-label">GST @18%</span> <span class="total-card-value" id="gst-amount-mobile">₹0.00</span>
+       </div>
+       <div class="total-card grand"><span class="total-card-label">Grand Total (With GST)</span> <span class="total-card-value" id="grand-total-mobile">₹0.00</span>
+       </div>
+       <div class="total-card per-sqft"><span class="total-card-label">Per Sq.Ft (Without GST)</span> <span class="total-card-value" id="per-sqft-cost-without-gst-mobile">₹0.00</span>
+       </div>
+       <div class="total-card per-sqft-gst"><span class="total-card-label">Per Sq.Ft (With GST)</span> <span class="total-card-value" id="per-sqft-cost-mobile">₹0.00</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Footer -->
+   <footer>
+    <p class="powered-by">Powered by Afjal Ali</p>
+    <p class="contact">Contact: +91-9452137890</p>
+   </footer>
+  </div>
+  <script>
+    // Configuration
+    const defaultConfig = {
+      company_name: 'Contrive Interior & Construction'
+    };
+    
+    let config = { ...defaultConfig };
+    let currentProject = null;
+    let currentUnit = 'feet'; // Track current measurement unit
+    
+    // Element SDK initialization
+    async function initElementSdk() {
+      if (window.elementSdk) {
+        await window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (newConfig) => {
+            config = { ...defaultConfig, ...newConfig };
+            updateUIFromConfig();
+          },
+          mapToCapabilities: (cfg) => ({
+            recolorables: [],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (cfg) => new Map([
+            ['company_name', cfg.company_name || defaultConfig.company_name]
+          ])
+        });
+        config = { ...defaultConfig, ...window.elementSdk.config };
+        updateUIFromConfig();
+      }
+    }
+    
+    function updateUIFromConfig() {
+      document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+    }
+    
+    // Unit conversion functions
+    function convertToFeet(value, fromUnit) {
+      if (fromUnit === 'feet') return value;
+      if (fromUnit === 'mm') return value / 304.8; // 1 foot = 304.8 mm
+      if (fromUnit === 'meter') return value * 3.28084; // 1 meter = 3.28084 feet
+      return value;
+    }
+    
+    function convertFromFeet(value, toUnit) {
+      if (toUnit === 'feet') return value;
+      if (toUnit === 'mm') return value * 304.8;
+      if (toUnit === 'meter') return value / 3.28084;
+      return value;
+    }
+    
+    function handleUnitChange() {
+      const newUnit = document.getElementById('unit-select').value;
+      
+      // Get current values in feet
+      const lengthInFeet = convertToFeet(parseFloat(document.getElementById('length').value) || 0, currentUnit);
+      const widthInFeet = convertToFeet(parseFloat(document.getElementById('width').value) || 0, currentUnit);
+      const heightInFeet = convertToFeet(parseFloat(document.getElementById('height').value) || 0, currentUnit);
+      const doorLengthInFeet = convertToFeet(parseFloat(document.getElementById('door-length').value) || 0, currentUnit);
+      const doorWidthInFeet = convertToFeet(parseFloat(document.getElementById('door-width').value) || 0, currentUnit);
+      const windowLengthInFeet = convertToFeet(parseFloat(document.getElementById('window-length').value) || 0, currentUnit);
+      const windowWidthInFeet = convertToFeet(parseFloat(document.getElementById('window-width').value) || 0, currentUnit);
+      
+      // Convert to new unit
+      const decimalPlaces = newUnit === 'mm' ? 0 : 2;
+      document.getElementById('length').value = convertFromFeet(lengthInFeet, newUnit).toFixed(decimalPlaces);
+      document.getElementById('width').value = convertFromFeet(widthInFeet, newUnit).toFixed(decimalPlaces);
+      document.getElementById('height').value = convertFromFeet(heightInFeet, newUnit).toFixed(decimalPlaces);
+      document.getElementById('door-length').value = convertFromFeet(doorLengthInFeet, newUnit).toFixed(decimalPlaces);
+      document.getElementById('door-width').value = convertFromFeet(doorWidthInFeet, newUnit).toFixed(decimalPlaces);
+      document.getElementById('window-length').value = convertFromFeet(windowLengthInFeet, newUnit).toFixed(decimalPlaces);
+      document.getElementById('window-width').value = convertFromFeet(windowWidthInFeet, newUnit).toFixed(decimalPlaces);
+      
+      // Update unit labels
+      const unitLabel = newUnit === 'feet' ? 'ft' : (newUnit === 'mm' ? 'mm' : 'm');
+      document.getElementById('length-unit').textContent = unitLabel;
+      document.getElementById('width-unit').textContent = unitLabel;
+      document.getElementById('height-unit').textContent = unitLabel;
+      document.getElementById('door-length-unit').textContent = unitLabel;
+      document.getElementById('door-width-unit').textContent = unitLabel;
+      document.getElementById('window-length-unit').textContent = unitLabel;
+      document.getElementById('window-width-unit').textContent = unitLabel;
+      
+      // Update step size based on unit
+      const stepSize = newUnit === 'mm' ? '1' : '0.01';
+      document.getElementById('length').step = stepSize;
+      document.getElementById('width').step = stepSize;
+      document.getElementById('height').step = stepSize;
+      document.getElementById('door-length').step = stepSize;
+      document.getElementById('door-width').step = stepSize;
+      document.getElementById('window-length').step = stepSize;
+      document.getElementById('window-width').step = stepSize;
+      
+      // Update internal wall inputs
+      updateInternalWallUnits(newUnit, stepSize);
+      
+      // Update current unit
+      currentUnit = newUnit;
+      
+      // Recalculate
+      calculate();
+    }
+    
+    // Project selection
+    function selectProject(type, defaultHeight) {
+      const projectNames = {
+        'aerocon': 'Aerocon Cabin',
+        'puff': 'Puff Cabin',
+        'container': 'Container',
+        'shed': 'Shed'
+      };
+      
+      currentProject = {
+        type: type,
+        name: projectNames[type],
+        defaultHeight: defaultHeight
+      };
+      
+      document.getElementById('height').value = defaultHeight;
+      document.getElementById('current-project-name').textContent = projectNames[type];
+      document.getElementById('selection-screen').style.display = 'none';
+      document.getElementById('calculator-screen').classList.add('active');
+      
+      updateInternalWalls();
+      calculate();
+    }
+    
+    function changeProject() {
+      document.getElementById('selection-screen').style.display = 'flex';
+      document.getElementById('calculator-screen').classList.remove('active');
+      currentProject = null;
+    }
+    
+    // Update internal walls inputs
+    function updateInternalWalls() {
+      const count = parseInt(document.getElementById('num-internal-walls').value) || 0;
+      const container = document.getElementById('internal-walls-container');
+      container.innerHTML = '';
+      
+      if (count > 0) {
+        const unitLabel = currentUnit === 'feet' ? 'ft' : (currentUnit === 'mm' ? 'mm' : 'm');
+        const helperText = document.createElement('small');
+        helperText.style.color = '#6b7280';
+        helperText.style.fontSize = '0.7rem';
+        helperText.style.display = 'block';
+        helperText.style.marginBottom = '0.75rem';
+        helperText.style.fontFamily = 'Space Mono, monospace';
+        helperText.textContent = `Enter length (${unitLabel}) for each internal wall:`;
+        container.appendChild(helperText);
+      }
+      
+      const stepSize = currentUnit === 'mm' ? '1' : '0.01';
+      
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement('div');
+        div.className = 'internal-wall-entry';
+        div.innerHTML = `
+          <label>Wall ${i}:</label>
+          <input type="number" id="wall-${i}" step="${stepSize}" value="8" oninput="calculate()" placeholder="Enter length">
+        `;
+        container.appendChild(div);
+      }
+      
+      calculate();
+    }
+    
+    function updateInternalWallUnits(newUnit, stepSize) {
+      const count = parseInt(document.getElementById('num-internal-walls').value) || 0;
+      const decimalPlaces = newUnit === 'mm' ? 0 : 2;
+      
+      for (let i = 1; i <= count; i++) {
+        const wallInput = document.getElementById(`wall-${i}`);
+        if (wallInput) {
+          const valueInFeet = convertToFeet(parseFloat(wallInput.value) || 0, currentUnit);
+          wallInput.value = convertFromFeet(valueInFeet, newUnit).toFixed(decimalPlaces);
+          wallInput.step = stepSize;
+        }
+      }
+      
+      // Update helper text
+      if (count > 0) {
+        const unitLabel = newUnit === 'feet' ? 'ft' : (newUnit === 'mm' ? 'mm' : 'm');
+        const helperText = document.querySelector('#internal-walls-container small');
+        if (helperText) {
+          helperText.textContent = `Enter length (${unitLabel}) for each internal wall:`;
+        }
+      }
+    }
+    
+    // Main calculation function
+    function calculate() {
+      if (!currentProject) return;
+      
+      // Get basic dimensions and convert to feet for calculation
+      const length = convertToFeet(parseFloat(document.getElementById('length').value) || 0, currentUnit);
+      const width = convertToFeet(parseFloat(document.getElementById('width').value) || 0, currentUnit);
+      const height = convertToFeet(parseFloat(document.getElementById('height').value) || 0, currentUnit);
+      
+      // Get doors and windows (convert to feet)
+      const numDoors = parseInt(document.getElementById('num-doors').value) || 0;
+      const doorLength = convertToFeet(parseFloat(document.getElementById('door-length').value) || 0, currentUnit);
+      const doorWidth = convertToFeet(parseFloat(document.getElementById('door-width').value) || 0, currentUnit);
+      const numWindows = parseInt(document.getElementById('num-windows').value) || 0;
+      const windowLength = convertToFeet(parseFloat(document.getElementById('window-length').value) || 0, currentUnit);
+      const windowWidth = convertToFeet(parseFloat(document.getElementById('window-width').value) || 0, currentUnit);
+      
+      // Get internal walls (convert to feet)
+      const numInternalWalls = parseInt(document.getElementById('num-internal-walls').value) || 0;
+      let internalWallLength = 0;
+      for (let i = 1; i <= numInternalWalls; i++) {
+        const wallInput = document.getElementById(`wall-${i}`);
+        if (wallInput) {
+          const wallValue = convertToFeet(parseFloat(wallInput.value) || 0, currentUnit);
+          internalWallLength += wallValue;
+        }
+      }
+      
+      // Calculate core areas
+      const structureArea = length * width;
+      const wallRunningFeet = (length * 2) + (width * 2);
+      const wallArea = (wallRunningFeet + internalWallLength) * height;
+      const roofArea = (length + 1) * (width + 1);
+      const doorArea = numDoors * doorLength * doorWidth;
+      const windowArea = numWindows * windowLength * windowWidth;
+      const electricalArea = length * width;
+      
+      // Get display unit for results
+      const displayUnit = currentUnit === 'feet' ? 'sq.ft' : (currentUnit === 'mm' ? 'sq.mm' : 'sq.m');
+      const displayLinearUnit = currentUnit === 'feet' ? 'rft' : (currentUnit === 'mm' ? 'mm' : 'm');
+      const decimalPlaces = currentUnit === 'mm' ? 0 : 2;
+      
+      // Convert areas back to display unit for showing in results
+      const displayStructureArea = convertFromFeet(structureArea, currentUnit);
+      const displayWallArea = convertFromFeet(wallArea, currentUnit);
+      const displayRoofArea = convertFromFeet(roofArea, currentUnit);
+      const displayDoorArea = convertFromFeet(doorArea, currentUnit);
+      const displayWindowArea = convertFromFeet(windowArea, currentUnit);
+      const displayElectricalArea = convertFromFeet(electricalArea, currentUnit);
+      
+      // Build results array
+      const results = [];
+      
+      // Core components (always shown)
+      results.push({
+        name: 'Structure Area',
+        quantity: displayStructureArea.toFixed(decimalPlaces),
+        unit: displayUnit,
+        rateId: 'rate-structure',
+        defaultRate: ''
+      });
+      
+      results.push({
+        name: 'Wall Area',
+        quantity: displayWallArea.toFixed(decimalPlaces),
+        unit: displayUnit,
+        rateId: 'rate-wall',
+        defaultRate: ''
+      });
+      
+      results.push({
+        name: 'Roof Area',
+        quantity: displayRoofArea.toFixed(decimalPlaces),
+        unit: displayUnit,
+        rateId: 'rate-roof',
+        defaultRate: ''
+      });
+      
+      if (numDoors > 0) {
+        results.push({
+          name: 'Door Area',
+          quantity: displayDoorArea.toFixed(decimalPlaces),
+          unit: displayUnit,
+          rateId: 'rate-door',
+          defaultRate: ''
+        });
+      }
+      
+      if (numWindows > 0) {
+        results.push({
+          name: 'Window Area',
+          quantity: displayWindowArea.toFixed(decimalPlaces),
+          unit: displayUnit,
+          rateId: 'rate-window',
+          defaultRate: ''
+        });
+      }
+      
+      results.push({
+        name: 'Electrical Work Area',
+        quantity: displayElectricalArea.toFixed(decimalPlaces),
+        unit: displayUnit,
+        rateId: 'rate-electrical',
+        defaultRate: ''
+      });
+      
+      // Optional components
+      if (document.getElementById('opt-tiles').checked) {
+        const tilesArea = structureArea + wallRunningFeet;
+        const displayTilesArea = convertFromFeet(tilesArea, currentUnit);
+        results.push({
+          name: 'Tiles + Skirting',
+          quantity: displayTilesArea.toFixed(decimalPlaces),
+          unit: `${displayUnit} + ${displayLinearUnit}`,
+          rateId: 'rate-tiles',
+          defaultRate: ''
+        });
+      }
+      
+      if (document.getElementById('opt-false-ceiling').checked) {
+        const falseCeilingArea = length * width;
+        const displayFalseCeilingArea = convertFromFeet(falseCeilingArea, currentUnit);
+        results.push({
+          name: 'False Ceiling',
+          quantity: displayFalseCeilingArea.toFixed(decimalPlaces),
+          unit: displayUnit,
+          rateId: 'rate-false-ceiling',
+          defaultRate: ''
+        });
+      }
+      
+      if (document.getElementById('opt-insulation').checked) {
+        const displayInsulationArea = convertFromFeet(roofArea, currentUnit);
+        results.push({
+          name: 'Insulation',
+          quantity: displayInsulationArea.toFixed(decimalPlaces),
+          unit: displayUnit,
+          rateId: 'rate-insulation',
+          defaultRate: ''
+        });
+      }
+      
+      if (document.getElementById('opt-toilet').checked) {
+        results.push({
+          name: 'Toilet Unit',
+          quantity: '1',
+          unit: 'unit',
+          rateId: 'rate-toilet',
+          defaultRate: ''
+        });
+      }
+      
+      if (document.getElementById('opt-kitchen').checked) {
+        results.push({
+          name: 'Kitchen',
+          quantity: '1',
+          unit: 'unit',
+          rateId: 'rate-kitchen',
+          defaultRate: ''
+        });
+      }
+      
+      if (document.getElementById('opt-cement-fiber').checked) {
+        const cementFiberArea = wallRunningFeet * 10;
+        const displayCementFiberArea = convertFromFeet(cementFiberArea, currentUnit);
+        results.push({
+          name: 'Cement Fiber Plank',
+          quantity: displayCementFiberArea.toFixed(decimalPlaces),
+          unit: displayUnit,
+          rateId: 'rate-cement-fiber',
+          defaultRate: ''
+        });
+      }
+      
+      // Render results table
+      renderResults(results, structureArea);
+    }
+    
+    // Store rates globally to persist them
+    const rateStore = {};
+    
+    function renderResults(results, structureArea) {
+      const tbody = document.getElementById('results-body');
+      const mobileCards = document.getElementById('results-mobile-cards');
+      tbody.innerHTML = '';
+      mobileCards.innerHTML = '';
+      
+      let grandTotal = 0;
+      
+      results.forEach(item => {
+        // Desktop table row
+        const row = document.createElement('tr');
+        
+        // Get rate from store or use default (empty string for blank)
+        const currentRate = rateStore[item.rateId] !== undefined ? rateStore[item.rateId] : item.defaultRate;
+        
+        const quantity = parseFloat(item.quantity);
+        const rateValue = currentRate === '' ? 0 : parseFloat(currentRate);
+        const amount = quantity * rateValue;
+        grandTotal += amount;
+        
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.quantity} ${item.unit}</td>
+          <td><input type="number" class="rate-input" id="${item.rateId}" value="${currentRate}" step="0.01" placeholder="0"></td>
+          <td>  ${amount.toFixed(2)}</td>
+        `;
+        
+        tbody.appendChild(row);
+        
+        // Add event listener to the desktop rate input
+        const rateInput = document.getElementById(item.rateId);
+        rateInput.addEventListener('input', function() {
+          const val = this.value;
+          rateStore[item.rateId] = val === '' ? '' : parseFloat(val) || 0;
+          // Sync mobile input too
+          const mobileInput = document.getElementById(`${item.rateId}-mobile`);
+          if (mobileInput) mobileInput.value = val;
+          calculateFromRates();
+        });
+        
+        // Mobile card
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        card.innerHTML = `
+          <div class="result-card-header">${item.name}</div>
+          <div class="result-card-row">
+            <span class="result-card-label">Quantity</span>
+            <span class="result-card-value">${item.quantity} ${item.unit}</span>
+          </div>
+          <div class="result-card-row">
+            <span class="result-card-label">Rate</span>
+            <input type="number" class="rate-input" id="${item.rateId}-mobile" value="${currentRate}" step="0.01" placeholder="0">
+          </div>
+          <div class="result-card-row">
+            <span class="result-card-label">Amount</span>
+            <span class="result-card-value" id="${item.rateId}-amount-mobile">₹${amount.toFixed(2)}</span>
+          </div>
+        `;
+        
+        mobileCards.appendChild(card);
+        
+        // Add event listener to mobile rate input AFTER appending to DOM
+        setTimeout(() => {
+          const mobileRateInput = document.getElementById(`${item.rateId}-mobile`);
+          if (mobileRateInput) {
+            mobileRateInput.addEventListener('input', function() {
+              const val = this.value;
+              rateStore[item.rateId] = val === '' ? '' : parseFloat(val) || 0;
+              // Sync desktop input too
+              const desktopInput = document.getElementById(item.rateId);
+              if (desktopInput) desktopInput.value = val;
+              calculateFromRates();
+            });
+            // Make sure it's focusable
+            mobileRateInput.setAttribute('inputmode', 'decimal');
+          }
+        }, 0);
+      });
+      
+      // Update totals (both desktop and mobile)
+      updateTotals(grandTotal, structureArea);
+    }
+    
+    function updateTotals(grandTotal, structureArea) {
+      const gstAmount = grandTotal * 0.18;
+      const totalWithGst = grandTotal + gstAmount;
+      const perSqftCostWithoutGst = structureArea > 0 ? grandTotal / structureArea : 0;
+      const perSqftCostWithGst = structureArea > 0 ? totalWithGst / structureArea : 0;
+      
+      // Desktop totals
+      document.getElementById('subtotal').textContent = `₹${grandTotal.toFixed(2)}`;
+      document.getElementById('gst-amount').textContent = `₹${gstAmount.toFixed(2)}`;
+      document.getElementById('grand-total').textContent = `₹${totalWithGst.toFixed(2)}`;
+      document.getElementById('per-sqft-cost-without-gst').textContent = `₹${perSqftCostWithoutGst.toFixed(2)}`;
+      document.getElementById('per-sqft-cost').textContent = `₹${perSqftCostWithGst.toFixed(2)}`;
+      
+      // Mobile totals
+      document.getElementById('subtotal-mobile').textContent = `₹${grandTotal.toFixed(2)}`;
+      document.getElementById('gst-amount-mobile').textContent = `₹${gstAmount.toFixed(2)}`;
+      document.getElementById('grand-total-mobile').textContent = `₹${totalWithGst.toFixed(2)}`;
+      document.getElementById('per-sqft-cost-without-gst-mobile').textContent = `₹${perSqftCostWithoutGst.toFixed(2)}`;
+      document.getElementById('per-sqft-cost-mobile').textContent = `₹${perSqftCostWithGst.toFixed(2)}`;
+    }
+    
+    // Calculate only amounts when rates change (don't rebuild table)
+    function calculateFromRates() {
+      const rows = document.getElementById('results-body').querySelectorAll('tr');
+      let grandTotal = 0;
+      
+      // Update desktop table
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const quantityText = cells[1].textContent.trim().split(' ')[0];
+        const quantity = parseFloat(quantityText) || 0;
+        const rateInput = cells[2].querySelector('input');
+        const rateId = rateInput.id;
+        const rateVal = rateInput.value;
+        const rate = rateVal === '' ? 0 : parseFloat(rateVal) || 0;
+        const amount = quantity * rate;
+        grandTotal += amount;
+        
+        cells[3].textContent = `₹${amount.toFixed(2)}`;
+        
+        // Sync mobile rate input value
+        const mobileRateInput = document.getElementById(`${rateId}-mobile`);
+        if (mobileRateInput && mobileRateInput.value !== rateVal) {
+          mobileRateInput.value = rateVal;
+        }
+        
+        // Update mobile amount
+        const mobileAmount = document.getElementById(`${rateId}-amount-mobile`);
+        if (mobileAmount) {
+          mobileAmount.textContent = `₹${amount.toFixed(2)}`;
+        }
+      });
+      
+      const length = parseFloat(document.getElementById('length').value) || 0;
+      const width = parseFloat(document.getElementById('width').value) || 0;
+      const structureArea = length * width;
+      
+      // Update totals (both desktop and mobile)
+      updateTotals(grandTotal, structureArea);
+    }
+    
+    // Initialize
+    initElementSdk();
+    
+    // Theme toggle functionality
+    function toggleTheme() {
+      const body = document.body;
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      body.classList.toggle('light-mode');
+      
+      if (body.classList.contains('light-mode')) {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        themeText.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+        themeText.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    
+    // Load saved theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        document.getElementById('sun-icon').style.display = 'none';
+        document.getElementById('moon-icon').style.display = 'block';
+        document.getElementById('theme-text').textContent = 'Dark';
+      }
+    });
+    
+    // Print functionality
+    function printCalculation() {
+      window.print();
+    }
+    
+    // PDF Download functionality
+    function downloadPDF() {
+      // Create a printable view message
+      const message = document.createElement('div');
+      message.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #252932 0%, #1a1d29 100%);
+        color: #e8eaed;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 2px solid #ff8a4c;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        z-index: 10000;
+        text-align: center;
+        font-family: 'Space Mono', monospace;
+        max-width: 90%;
+      `;
+      
+      message.innerHTML = `
+        <div style="font-size: 1.2rem; font-weight: 700; color: #ff8a4c; margin-bottom: 1rem;">
+          📄 Save as PDF
+        </div>
+        <div style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          To save this calculation as PDF:<br><br>
+          1. Click "Print" button or press <strong>Ctrl+P</strong> (Windows) / <strong>Cmd+P</strong> (Mac)<br>
+          2. In print dialog, select <strong>"Save as PDF"</strong> as destination<br>
+          3. Click <strong>"Save"</strong> and choose location
+        </div>
+        <button type="button" onclick="this.parentElement.remove(); window.print();" style="
+          background: #ff8a4c;
+          color: white;
+          border: none;
+          padding: 0.75rem 1.5rem;
+          border-radius: 8px;
+          cursor: pointer;
+          font-family: 'Space Mono', monospace;
+          font-weight: 600;
+          font-size: 0.875rem;
+          margin-right: 0.5rem;
+        ">Open Print Dialog</button>
+        <button type="button" onclick="this.parentElement.remove()" style="
+          background: rgba(255, 138, 76, 0.1);
+          color: #ff8a4c;
+          border: 1px solid rgba(255, 138, 76, 0.3);
+          padding: 0.75rem 1.5rem;
+          border-radius: 8px;
+          cursor: pointer;
+          font-family: 'Space Mono', monospace;
+          font-weight: 600;
+          font-size: 0.875rem;
+        ">Close</button>
+      `;
+      
+      document.body.appendChild(message);
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c165ee8736c178f',t:'MTc2ODk5Mzg4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
