@@ -219,6 +219,7 @@
       font-weight: 600;
       box-shadow: 0 0 20px rgba(255, 20, 147, 0.4), 0 0 40px rgba(255, 20, 147, 0.2);
       animation: pinkGlow 2s ease-in-out infinite;
+      cursor: pointer;
     }
     
     @keyframes pinkGlow {
@@ -447,6 +448,7 @@
       letter-spacing: -0.3px;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
     
     .project-type-btn::before {
@@ -635,6 +637,7 @@
       font-family: 'Inter', sans-serif;
       font-weight: 500;
       transition: all 0.2s ease;
+      cursor: pointer;
     }
     
     .change-project-btn:hover {
@@ -874,6 +877,42 @@
       font-weight: 600 !important;
     }
     
+    /* GST Toggle Custom Styling */
+    .gst-toggle-btn {
+      position: relative;
+      background: rgba(255, 20, 147, 0.15);
+      border: 2px solid rgba(255, 20, 147, 0.4);
+      color: #ff1493;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.9375rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.4), 0 0 40px rgba(255, 20, 147, 0.2);
+      animation: pinkGlow 2s ease-in-out infinite;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+    
+    .gst-toggle-btn:hover {
+      background: rgba(255, 20, 147, 0.25);
+      border-color: #ff1493;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 35px rgba(255, 20, 147, 0.7), 0 0 70px rgba(255, 20, 147, 0.5);
+    }
+    
+    .gst-toggle-btn input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ff1493;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
     /* Footer */
     footer {
       background: #252932;
@@ -886,6 +925,35 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.8;
       font-weight: 400;
+    }
+    
+    footer .ms-spec-btn {
+      background: linear-gradient(135deg, #05EAF2 0%, #04c9d1 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 4px 20px rgba(5, 234, 242, 0.4);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.3px;
+      cursor: pointer;
+    }
+    
+    footer .ms-spec-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(5, 234, 242, 0.6);
+      background: linear-gradient(135deg, #04c9d1 0%, #05EAF2 100%);
+    }
+    
+    footer .ms-spec-btn svg {
+      flex-shrink: 0;
     }
     
     footer .powered-by {
@@ -1285,130 +1353,7 @@
       }
     }
     
-    /* Print Styles - Only show results section */
-    @media print {
-      /* Hide everything except results */
-      header,
-      .theme-toggle,
-      footer,
-      .selection-screen,
-      .project-header,
-      .input-section,
-      .change-project-btn,
-      .action-buttons {
-        display: none !important;
-      }
-      
-      /* Show only calculator screen */
-      .calculator-screen {
-        display: block !important;
-        padding: 0 !important;
-        background: white !important;
-      }
-      
-      body {
-        background: white !important;
-        color: black !important;
-      }
-      
-      .calculator-content {
-        display: block !important;
-      }
-      
-      /* Style results section for print */
-      .results-section {
-        background: white !important;
-        border: 2px solid #333 !important;
-        box-shadow: none !important;
-        page-break-inside: avoid;
-        padding: 1.5rem !important;
-      }
-      
-      .section-title {
-        color: #333 !important;
-        border-color: #333 !important;
-        font-size: 1.2rem !important;
-        margin-bottom: 1rem !important;
-      }
-      
-      .section-title svg {
-        stroke: #333 !important;
-      }
-      
-      /* Print table styles */
-      .results-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      
-      .results-table th {
-        background: #f5f5f5 !important;
-        color: #333 !important;
-        border: 1px solid #333 !important;
-        padding: 0.75rem !important;
-      }
-      
-      .results-table td {
-        border: 1px solid #333 !important;
-        color: #333 !important;
-        padding: 0.75rem !important;
-      }
-      
-      .results-table tfoot td {
-        font-weight: 700;
-        background: #f5f5f5 !important;
-        color: #333 !important;
-      }
-      
-      .gst-row td {
-        background: #ffe8dc !important;
-        color: #333 !important;
-      }
-      
-      .grand-total-row td {
-        background: #ffd4bf !important;
-        color: #333 !important;
-        font-size: 1.1rem !important;
-      }
-      
-      .per-sqft-row td {
-        background: #fff5ed !important;
-        color: #333 !important;
-      }
-      
-      .per-sqft-row-with-gst td {
-        background: #ffead9 !important;
-        color: #333 !important;
-      }
-      
-      /* Hide rate inputs in print, show values */
-      .rate-input {
-        border: none !important;
-        background: transparent !important;
-        color: #333 !important;
-        padding: 0 !important;
-        text-align: right !important;
-      }
-      
-      /* Add print header */
-      .results-section::before {
-        content: "Contrive Interior & Construction - Calculation Results";
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 1.5rem;
-        color: #333;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid #333;
-      }
-      
-      /* Mobile cards - hide in print on desktop */
-      .results-mobile-cards,
-      .results-mobile-totals {
-        display: none !important;
-      }
-    }
+    /* Print Styles - Temporarily Disabled for Testing */
     
     /* Desktop: Show table, hide mobile cards */
     @media (min-width: 769px) {
@@ -1449,6 +1394,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
     }
     
     .action-btn:hover {
@@ -1469,6 +1415,40 @@
     body.light-mode .action-btn:hover {
       background: rgba(255, 138, 76, 0.15);
       border-color: #ff8a4c;
+    }
+    
+    /* GST Toggle Custom Styling - Pink Glowing Button */
+    .gst-toggle-btn {
+      background: rgba(255, 20, 147, 0.15);
+      border: 2px solid rgba(255, 20, 147, 0.4);
+      color: #ff1493;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.9375rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.4), 0 0 40px rgba(255, 20, 147, 0.2);
+      animation: pinkGlow 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+    
+    .gst-toggle-btn:hover {
+      background: rgba(255, 20, 147, 0.25);
+      border-color: #ff1493;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 35px rgba(255, 20, 147, 0.7), 0 0 70px rgba(255, 20, 147, 0.5);
+    }
+    
+    .gst-toggle-btn input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ff1493;
+      cursor: pointer;
+      flex-shrink: 0;
     }
     
     /* Internal walls dynamic input */
@@ -1530,32 +1510,32 @@
      <p class="selection-subtitle">Choose one to begin calculation</p>
      <div class="project-types"><button type="button" class="project-type-btn aerocon" onclick="selectProject('aerocon', 10)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="28" rx="2" stroke="currentColor" stroke-width="2" /> <path d="M12 12V8a2 2 0 012-2h20a2 2 0 012 2v4" stroke="currentColor" stroke-width="2" /> <line x1="6" y1="24" x2="42" y2="24" stroke="currentColor" stroke-width="2" /> <line x1="6" y1="32" x2="42" y2="32" stroke="currentColor" stroke-width="2" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Base structure --> <rect x="4" y="14" width="40" height="28" rx="2" stroke="#ff8a4c" stroke-width="2.5" fill="rgba(255, 138, 76, 0.05)" /> <!-- Roof overhang --> <path d="M2 14h44" stroke="#ff8a4c" stroke-width="2.5" stroke-linecap="round" /> <!-- Door --> <rect x="10" y="26" width="10" height="16" rx="1" stroke="#ff8a4c" stroke-width="2" fill="rgba(255, 138, 76, 0.1)" /> <circle cx="17" cy="34" r="1" fill="#ff8a4c" /> <!-- Windows --> <rect x="24" y="20" width="8" height="8" rx="1" stroke="#ff8a4c" stroke-width="2" fill="rgba(255, 138, 76, 0.08)" /> <line x1="28" y1="20" x2="28" y2="28" stroke="#ff8a4c" stroke-width="1.5" /> <line x1="24" y1="24" x2="32" y2="24" stroke="#ff8a4c" stroke-width="1.5" /> <rect x="34" y="20" width="8" height="8" rx="1" stroke="#ff8a4c" stroke-width="2" fill="rgba(255, 138, 76, 0.08)" /> <line x1="38" y1="20" x2="38" y2="28" stroke="#ff8a4c" stroke-width="1.5" /> <line x1="34" y1="24" x2="42" y2="24" stroke="#ff8a4c" stroke-width="1.5" />
         </svg>
        </div> Aerocon Cabin 
        <div class="project-meta">
-        DEFAULT: 10 FT HEIGHT
+               DEFAULT: 10 FT HEIGHT
        </div></button> <button type="button" class="project-type-btn puff" onclick="selectProject('puff', 10)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 16l16-8 16 8v20a2 2 0 01-2 2H10a2 2 0 01-2-2V16z" stroke="currentColor" stroke-width="2" /> <path d="M8 16l16 8 16-8" stroke="currentColor" stroke-width="2" /> <rect x="18" y="28" width="12" height="14" stroke="currentColor" stroke-width="2" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Triangular roof house --> <path d="M24 6l-20 16v18a2 2 0 002 2h36a2 2 0 002-2V22L24 6z" stroke="#4c9fff" stroke-width="2.5" fill="rgba(76, 159, 255, 0.05)" /> <!-- Roof ridge --> <path d="M24 6v36" stroke="#4c9fff" stroke-width="2" stroke-linecap="round" /> <!-- Door --> <rect x="18" y="28" width="12" height="14" rx="1" stroke="#4c9fff" stroke-width="2" fill="rgba(76, 159, 255, 0.1)" /> <circle cx="27" cy="35" r="1" fill="#4c9fff" /> <!-- Window grid --> <rect x="8" y="20" width="6" height="6" rx="0.5" stroke="#4c9fff" stroke-width="1.5" fill="rgba(76, 159, 255, 0.08)" /> <line x1="11" y1="20" x2="11" y2="26" stroke="#4c9fff" stroke-width="1" /> <line x1="8" y1="23" x2="14" y2="23" stroke="#4c9fff" stroke-width="1" /> <rect x="34" y="20" width="6" height="6" rx="0.5" stroke="#4c9fff" stroke-width="1.5" fill="rgba(76, 159, 255, 0.08)" /> <line x1="37" y1="20" x2="37" y2="26" stroke="#4c9fff" stroke-width="1" /> <line x1="34" y1="23" x2="40" y2="23" stroke="#4c9fff" stroke-width="1" />
         </svg>
        </div> Puff Cabin 
        <div class="project-meta">
-        DEFAULT: 10 FT HEIGHT
+        🔵 DEFAULT: 10 FT HEIGHT
        </div></button> <button type="button" class="project-type-btn container" onclick="selectProject('container', 10)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="20" rx="1" stroke="currentColor" stroke-width="2" /> <line x1="4" y1="20" x2="44" y2="20" stroke="currentColor" stroke-width="2" /> <line x1="4" y1="28" x2="44" y2="28" stroke="currentColor" stroke-width="2" /> <circle cx="10" cy="24" r="2" fill="currentColor" /> <circle cx="38" cy="24" r="2" fill="currentColor" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Container body --> <rect x="4" y="16" width="40" height="20" rx="1" stroke="#9f4cff" stroke-width="2.5" fill="rgba(159, 76, 255, 0.05)" /> <!-- Corrugated lines --> <line x1="8" y1="16" x2="8" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="12" y1="16" x2="12" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="16" y1="16" x2="16" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="20" y1="16" x2="20" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="24" y1="16" x2="24" y2="36" stroke="#9f4cff" stroke-width="2" /> <line x1="28" y1="16" x2="28" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="32" y1="16" x2="32" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="36" y1="16" x2="36" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <line x1="40" y1="16" x2="40" y2="36" stroke="#9f4cff" stroke-width="1.5" /> <!-- Corner reinforcements --> <rect x="2" y="14" width="4" height="4" stroke="#9f4cff" stroke-width="2" fill="rgba(159, 76, 255, 0.15)" /> <rect x="42" y="14" width="4" height="4" stroke="#9f4cff" stroke-width="2" fill="rgba(159, 76, 255, 0.15)" /> <!-- Wheels --> <circle cx="12" cy="38" r="3" stroke="#9f4cff" stroke-width="2" fill="rgba(159, 76, 255, 0.1)" /> <circle cx="36" cy="38" r="3" stroke="#9f4cff" stroke-width="2" fill="rgba(159, 76, 255, 0.1)" />
         </svg>
        </div> Container 
        <div class="project-meta">
-        DEFAULT: 10 FT HEIGHT
+            DEFAULT: 10 FT HEIGHT
        </div></button> <button type="button" class="project-type-btn shed" onclick="selectProject('shed', 12)">
        <div class="project-icon">
-        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20l20-12 20 12v20H4V20z" stroke="currentColor" stroke-width="2" /> <path d="M4 20l20 10 20-10" stroke="currentColor" stroke-width="2" /> <path d="M4 26h40M4 32h40" stroke="currentColor" stroke-width="2" />
+        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Gable roof --> <path d="M4 20l20-12 20 12v20H4V20z" stroke="#4cff8a" stroke-width="2.5" fill="rgba(76, 255, 138, 0.05)" /> <!-- Roof ridge line --> <path d="M24 8v32" stroke="#4cff8a" stroke-width="2.5" stroke-linecap="round" /> <!-- Roof panels --> <path d="M4 20l20 10 20-10" stroke="#4cff8a" stroke-width="2" /> <!-- Horizontal beams --> <line x1="4" y1="26" x2="44" y2="26" stroke="#4cff8a" stroke-width="2" /> <line x1="4" y1="32" x2="44" y2="32" stroke="#4cff8a" stroke-width="2" /> <!-- Support columns --> <line x1="10" y1="26" x2="10" y2="40" stroke="#4cff8a" stroke-width="2.5" /> <line x1="38" y1="26" x2="38" y2="40" stroke="#4cff8a" stroke-width="2.5" /> <!-- Base foundation --> <rect x="4" y="38" width="40" height="2" fill="rgba(76, 255, 138, 0.2)" stroke="#4cff8a" stroke-width="1" />
         </svg>
        </div> Shed 
        <div class="project-meta">
-        DEFAULT: 12 FT HEIGHT
+        🟢 DEFAULT: 12 FT HEIGHT
        </div></button>
      </div>
     </div>
@@ -1563,7 +1543,7 @@
    <div id="calculator-screen" class="calculator-screen">
     <div class="project-header">
      <div class="project-name">
-      <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="24" height="20" rx="1" stroke="#ff8a4c" stroke-width="2" /> <line x1="4" y1="16" x2="28" y2="16" stroke="#ff8a4c" stroke-width="2" />
+      <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="project-icon-header"><!-- Aerocon Cabin Icon (Default) --> <rect x="3" y="9" width="26" height="18" rx="1.5" stroke="currentColor" stroke-width="2" fill="none" /> <path d="M2 9h28" stroke="currentColor" stroke-width="2" stroke-linecap="round" /> <rect x="7" y="17" width="6" height="10" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none" /> <circle cx="11" cy="22" r="0.8" fill="currentColor" /> <rect x="16" y="13" width="5" height="5" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none" /> <line x1="18.5" y1="13" x2="18.5" y2="18" stroke="currentColor" stroke-width="1" /> <line x1="16" y1="15.5" x2="21" y2="15.5" stroke="currentColor" stroke-width="1" /> <rect x="22" y="13" width="5" height="5" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none" /> <line x1="24.5" y1="13" x2="24.5" y2="18" stroke="currentColor" stroke-width="1" /> <line x1="22" y1="15.5" x2="27" y2="15.5" stroke="currentColor" stroke-width="1" />
       </svg><span id="current-project-name">Aerocon Cabin</span>
      </div><button type="button" class="change-project-btn" onclick="changeProject()">← CHANGE TYPE</button>
     </div>
@@ -1639,7 +1619,9 @@
        </div>
        <div class="action-buttons"><button type="button" class="action-btn" onclick="printCalculation()">
          <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> <rect x="6" y="14" width="12" height="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-         </svg> Print </button> <button type="button" class="action-btn" onclick="downloadPDF()">
+         </svg> Print </button> <button type="button" class="action-btn" onclick="clearAllRates()">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg> Clear </button> <button type="button" class="action-btn" onclick="downloadPDF()">
          <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
          </svg> Save PDF </button>
        </div>
@@ -1694,8 +1676,117 @@
       </div>
      </div>
     </div>
+   </div><!-- Material Specification Screen -->
+   <div id="material-spec-screen" class="calculator-screen" style="display: none;">
+    <div class="project-header">
+     <div class="project-name">
+      <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="24" height="24" rx="2" stroke="#ff8a4c" stroke-width="2" /> <line x1="9" y1="10" x2="23" y2="10" stroke="#ff8a4c" stroke-width="2" /> <line x1="9" y1="16" x2="23" y2="16" stroke="#ff8a4c" stroke-width="2" /> <line x1="9" y1="22" x2="18" y2="22" stroke="#ff8a4c" stroke-width="2" />
+      </svg><span>M.S. – Material Specification</span>
+     </div><button type="button" class="change-project-btn" onclick="closeMaterialSpec()">← BACK TO CALCULATOR</button>
+    </div>
+    <div class="calculator-content"><!-- Pipe Selection -->
+     <div class="input-section" style="grid-column: 1 / -1;">
+      <div class="section-title">
+       <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="16" height="3" rx="0.5" stroke="#ff8a4c" stroke-width="2" /> <rect x="2" y="11" width="16" height="3" rx="0.5" stroke="#ff8a4c" stroke-width="2" />
+       </svg> Select Materials to Calculate
+      </div><small style="color: #6b7280; font-size: 0.8125rem; display: block; margin-bottom: 0.75rem; font-family: 'Inter', sans-serif;"> ✅ Tick the materials you want to include in calculation. Only selected items will appear in the table below. </small>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.5rem;">
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-0" onchange="updateMaterialSpecTable()"> <span>MS Pipe 25×25</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-1" onchange="updateMaterialSpecTable()"> <span>MS Pipe 40×40 (2.0mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-2" onchange="updateMaterialSpecTable()"> <span>MS Pipe 40×80 (2.2mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-3" onchange="updateMaterialSpecTable()"> <span>MS Pipe 50×100 (2.5mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-4" onchange="updateMaterialSpecTable()"> <span>MS Pipe 100×100 (3.0mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-5" onchange="updateMaterialSpecTable()"> <span>MS Pipe 100×150 (3.0mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-6" onchange="updateMaterialSpecTable()"> <span>MS Pipe 150×150 (3.5mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-7" onchange="updateMaterialSpecTable()"> <span>C Channel 5" ISMC 125 (2.5mm)</span> </label>
+       </div>
+       <div class="toggle-group"><label class="toggle-label"> <input type="checkbox" id="pipe-select-8" onchange="updateMaterialSpecTable()"> <span>C Channel 5" ISMC 125 (5.0mm)</span> </label>
+       </div>
+      </div>
+     </div><!-- GST Toggle -->
+     <div class="input-section" style="grid-column: 1 / -1;">
+      <div class="section-title">
+       <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L2 6v4c0 5 3 8 8 10 5-2 8-5 8-10V6l-8-4z" stroke="#ff8a4c" stroke-width="2" />
+       </svg> GST Configuration
+      </div>
+      <div class="toggle-group"><label class="gst-toggle-btn"> <input type="checkbox" id="gst-included" onchange="calculateMaterialSpec()"> <span>GST Included in Rate</span> </label>
+      </div><small style="color: #6b7280; font-size: 0.8125rem; display: block; margin-top: 0.5rem; font-family: 'Inter', sans-serif;"> <strong>GST Logic:</strong> Component amounts are calculated directly (Weight × Rate). GST @18% is added to the grand total only when this box is checked. </small>
+     </div><!-- Material Specification Table -->
+     <div class="results-section" style="grid-column: 1 / -1;">
+      <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+       <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="16" height="16" rx="1" stroke="#ff8a4c" stroke-width="2" /> <text x="10" y="13" text-anchor="middle" fill="#ff8a4c" font-size="10" font-weight="bold">
+          MS
+         </text>
+        </svg> Material Calculation
+       </div>
+       <div class="action-buttons"><button type="button" class="action-btn" onclick="printMaterialSpec()">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> <rect x="6" y="14" width="12" height="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg> Print Material Spec </button> <button type="button" class="action-btn" onclick="clearMaterialSpec()">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg> Clear </button>
+       </div>
+      </div><!-- Desktop Table -->
+      <table class="results-table material-spec-table">
+       <thead>
+        <tr>
+         <th>Material Component</th>
+         <th>Size</th>
+         <th>Thickness (mm)</th>
+         <th>Qty (Pieces - 20ft each)</th>
+         <th>Weight per Piece (kg)</th>
+         <th>Total Weight (kg)</th>
+         <th>Rate (₹/kg)</th>
+         <th>Amount (₹)</th>
+        </tr>
+       </thead>
+       <tbody id="material-spec-body"><!-- Material rows will be populated here -->
+       </tbody>
+       <tfoot>
+        <tr>
+         <td colspan="5" style="font-weight: 600;">Total Material Weight</td>
+         <td id="total-weight" style="font-weight: 600;">0.00 kg</td>
+         <td colspan="2"></td>
+        </tr>
+        <tr>
+         <td colspan="7" style="font-weight: 600;">Subtotal (Material Cost)</td>
+         <td id="material-subtotal" style="font-weight: 600;">₹0.00</td>
+        </tr>
+        <tr class="gst-row">
+         <td colspan="7">GST @18%</td>
+         <td id="material-gst-amount">₹0.00</td>
+        </tr>
+        <tr class="grand-total-row">
+         <td colspan="7">Grand Total (With GST)</td>
+         <td id="material-grand-total">₹0.00</td>
+        </tr>
+       </tfoot>
+      </table><!-- Mobile Card Layout -->
+      <div class="results-mobile-cards" id="material-spec-mobile-cards"><!-- Mobile cards will be populated here -->
+      </div><!-- Mobile Totals -->
+      <div class="results-mobile-totals">
+       <div class="total-card"><span class="total-card-label">Total Weight</span> <span class="total-card-value" id="total-weight-mobile">0.00 kg</span>
+       </div>
+       <div class="total-card subtotal"><span class="total-card-label">Subtotal (Without GST)</span> <span class="total-card-value" id="material-subtotal-mobile">  0.00</span>
+       </div>
+       <div class="total-card gst"><span class="total-card-label">GST @18%</span> <span class="total-card-value" id="material-gst-amount-mobile">₹0.00</span>
+       </div>
+       <div class="total-card grand"><span class="total-card-label">Grand Total (With GST)</span> <span class="total-card-value" id="material-grand-total-mobile">₹0.00</span>
+       </div>
+      </div>
+     </div>
+    </div>
    </div><!-- Footer -->
-   <footer>
+   <footer><button type="button" class="ms-spec-btn" onclick="openMaterialSpec()">
+     <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" /> <line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="2" /> <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" /> <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2" />
+     </svg> M.S. – Material Specification </button>
     <p class="powered-by">Powered by Afjal Ali</p>
     <p class="contact">Contact: +91-9452137890</p>
    </footer>
@@ -1838,6 +1929,60 @@
         }
       };
       
+      // Project-specific icons
+      const projectIcons = {
+        'aerocon': `
+          <rect x="3" y="9" width="26" height="18" rx="1.5" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M2 9h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect x="7" y="17" width="6" height="10" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="11" cy="22" r="0.8" fill="currentColor"/>
+          <rect x="16" y="13" width="5" height="5" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="18.5" y1="13" x2="18.5" y2="18" stroke="currentColor" stroke-width="1"/>
+          <line x1="16" y1="15.5" x2="21" y2="15.5" stroke="currentColor" stroke-width="1"/>
+          <rect x="22" y="13" width="5" height="5" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="24.5" y1="13" x2="24.5" y2="18" stroke="currentColor" stroke-width="1"/>
+          <line x1="22" y1="15.5" x2="27" y2="15.5" stroke="currentColor" stroke-width="1"/>
+        `,
+        'puff': `
+          <path d="M16 4l-12 10v12a1.5 1.5 0 001.5 1.5h21a1.5 1.5 0 001.5-1.5V14L16 4z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M16 4v23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="12" y="18" width="8" height="9" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="18" cy="23" r="0.8" fill="currentColor"/>
+          <rect x="6" y="13" width="4" height="4" rx="0.3" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <line x1="8" y1="13" x2="8" y2="17" stroke="currentColor" stroke-width="0.8"/>
+          <line x1="6" y1="15" x2="10" y2="15" stroke="currentColor" stroke-width="0.8"/>
+          <rect x="22" y="13" width="4" height="4" rx="0.3" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <line x1="24" y1="13" x2="24" y2="17" stroke="currentColor" stroke-width="0.8"/>
+          <line x1="22" y1="15" x2="26" y2="15" stroke="currentColor" stroke-width="0.8"/>
+        `,
+        'container': `
+          <rect x="3" y="10" width="26" height="13" rx="0.8" stroke="currentColor" stroke-width="2" fill="none"/>
+          <line x1="6" y1="10" x2="6" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="9" y1="10" x2="9" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="12" y1="10" x2="12" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="15" y1="10" x2="15" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="16" y1="10" x2="16" y2="23" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="17" y1="10" x2="17" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="20" y1="10" x2="20" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="23" y1="10" x2="23" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="26" y1="10" x2="26" y2="23" stroke="currentColor" stroke-width="1.2"/>
+          <rect x="1.5" y="8.5" width="2.5" height="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <rect x="28" y="8.5" width="2.5" height="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="9" cy="25" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="23" cy="25" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        `,
+        'shed': `
+          <path d="M3 13l13-8 13 8v12H3V13z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M16 5v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 13l13 6.5 13-6.5" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="3" y1="17" x2="29" y2="17" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="3" y1="21" x2="29" y2="21" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="8" y1="17" x2="8" y2="25" stroke="currentColor" stroke-width="2"/>
+          <line x1="24" y1="17" x2="24" y2="25" stroke="currentColor" stroke-width="2"/>
+          <rect x="3" y="24" width="26" height="1.5" fill="currentColor" opacity="0.3"/>
+        `
+      };
+      
       currentProject = {
         type: type,
         name: projectNames[type],
@@ -1848,11 +1993,21 @@
       // Apply theme colors to CSS variables
       applyProjectTheme(projectThemes[type]);
       
+      // Update header icon
+      const headerIcon = document.getElementById('project-icon-header');
+      if (headerIcon) {
+        headerIcon.innerHTML = projectIcons[type];
+      }
+      
       document.getElementById('height').value = defaultHeight;
       document.getElementById('current-project-name').textContent = projectNames[type];
+      
+      // Hide selection screen
       document.getElementById('selection-screen').style.display = 'none';
       
+      // Show calculator screen - CRITICAL FIX
       const calculatorScreen = document.getElementById('calculator-screen');
+      calculatorScreen.style.display = 'block';  // MUST set display block first
       calculatorScreen.classList.add('active');
       
       // Remove all theme classes first
@@ -1866,9 +2021,35 @@
     }
     
     function changeProject() {
+      // Clear all inputs when changing project
+      document.getElementById('length').value = '';
+      document.getElementById('width').value = '';
+      document.getElementById('height').value = '10';
+      document.getElementById('num-doors').value = '0';
+      document.getElementById('num-windows').value = '0';
+      document.getElementById('num-internal-walls').value = '0';
+      
+      // Clear all checkboxes
+      document.getElementById('opt-tiles').checked = false;
+      document.getElementById('opt-false-ceiling').checked = false;
+      document.getElementById('opt-false-floor').checked = false;
+      document.getElementById('opt-insulation').checked = false;
+      document.getElementById('opt-toilet').checked = false;
+      document.getElementById('opt-kitchen').checked = false;
+      document.getElementById('opt-cement-fiber').checked = false;
+      
+      // Clear internal walls
+      document.getElementById('internal-walls-container').innerHTML = '';
+      
+      // Clear results
+      document.getElementById('results-body').innerHTML = '';
+      document.getElementById('results-mobile-cards').innerHTML = '';
+      
+      // Show selection screen
       document.getElementById('selection-screen').style.display = 'flex';
       const calculatorScreen = document.getElementById('calculator-screen');
       calculatorScreen.classList.remove('active');
+      calculatorScreen.style.display = 'none';
       calculatorScreen.classList.remove('aerocon-theme', 'puff-theme', 'container-theme', 'shed-theme');
       
       currentProject = null;
@@ -2319,22 +2500,11 @@
         row.innerHTML = `
           <td>${item.name}</td>
           <td>${item.quantity} ${item.unit}</td>
-          <td><input type="number" class="rate-input" id="${item.rateId}" value="${currentRate}" step="0.01" placeholder="0"></td>
-          <td>₹${amount.toFixed(2)}</td>
+          <td><input type="number" class="rate-input" data-rate-id="${item.rateId}" data-quantity="${quantity}" value="${currentRate}" step="0.01" placeholder="0"></td>
+          <td class="amount-cell" data-amount-for="${item.rateId}">₹${amount.toFixed(2)}</td>
         `;
         
         tbody.appendChild(row);
-        
-        // Add event listener to the desktop rate input
-        const rateInput = document.getElementById(item.rateId);
-        rateInput.addEventListener('input', function() {
-          const val = this.value;
-          rateStore[item.rateId] = val === '' ? '' : parseFloat(val) || 0;
-          // Sync mobile input too
-          const mobileInput = document.getElementById(`${item.rateId}-mobile`);
-          if (mobileInput) mobileInput.value = val;
-          calculateFromRates();
-        });
         
         // Mobile card
         const card = document.createElement('div');
@@ -2347,36 +2517,67 @@
           </div>
           <div class="result-card-row">
             <span class="result-card-label">Rate</span>
-            <input type="number" class="rate-input" id="${item.rateId}-mobile" value="${currentRate}" step="0.01" placeholder="0">
+            <input type="number" class="rate-input" data-rate-id="${item.rateId}-mobile" data-quantity="${quantity}" value="${currentRate}" step="0.01" placeholder="0" inputmode="decimal">
           </div>
           <div class="result-card-row">
             <span class="result-card-label">Amount</span>
-            <span class="result-card-value" id="${item.rateId}-amount-mobile">₹${amount.toFixed(2)}</span>
+            <span class="result-card-value amount-cell" data-amount-for="${item.rateId}-mobile">₹${amount.toFixed(2)}</span>
           </div>
         `;
         
         mobileCards.appendChild(card);
-        
-        // Add event listener to mobile rate input AFTER appending to DOM
-        setTimeout(() => {
-          const mobileRateInput = document.getElementById(`${item.rateId}-mobile`);
-          if (mobileRateInput) {
-            mobileRateInput.addEventListener('input', function() {
-              const val = this.value;
-              rateStore[item.rateId] = val === '' ? '' : parseFloat(val) || 0;
-              // Sync desktop input too
-              const desktopInput = document.getElementById(item.rateId);
-              if (desktopInput) desktopInput.value = val;
-              calculateFromRates();
-            });
-            // Make sure it's focusable
-            mobileRateInput.setAttribute('inputmode', 'decimal');
-          }
-        }, 0);
       });
+      
+      // Add event listeners ONCE after all elements are rendered
+      setTimeout(() => {
+        attachRateInputListeners();
+      }, 0);
       
       // Update totals (both desktop and mobile)
       updateTotals(grandTotal, structureArea);
+    }
+    
+    // Attach event listeners to all rate inputs
+    function attachRateInputListeners() {
+      const allRateInputs = document.querySelectorAll('.rate-input[data-rate-id]');
+      
+      allRateInputs.forEach(input => {
+        // Add input event listener
+        input.addEventListener('input', function(e) {
+          const rateId = this.getAttribute('data-rate-id');
+          const baseRateId = rateId.replace('-mobile', '');
+          const quantity = parseFloat(this.getAttribute('data-quantity')) || 0;
+          const val = this.value;
+          const rateValue = val === '' ? 0 : parseFloat(val) || 0;
+          
+          // Store the rate
+          rateStore[baseRateId] = val;
+          
+          // Sync desktop and mobile inputs
+          const desktopInput = document.querySelector(`.rate-input[data-rate-id="${baseRateId}"]`);
+          const mobileInput = document.querySelector(`.rate-input[data-rate-id="${baseRateId}-mobile"]`);
+          
+          if (desktopInput && desktopInput !== this) desktopInput.value = val;
+          if (mobileInput && mobileInput !== this) mobileInput.value = val;
+          
+          // Calculate amount for THIS row immediately
+          const amount = quantity * rateValue;
+          
+          // Update THIS row's amount cells
+          const desktopAmountCell = document.querySelector(`.amount-cell[data-amount-for="${baseRateId}"]`);
+          const mobileAmountCell = document.querySelector(`.amount-cell[data-amount-for="${baseRateId}-mobile"]`);
+          
+          if (desktopAmountCell) {
+            desktopAmountCell.textContent = `₹${amount.toFixed(2)}`;
+          }
+          if (mobileAmountCell) {
+            mobileAmountCell.textContent = `₹${amount.toFixed(2)}`;
+          }
+          
+          // Recalculate totals
+          calculateTotalsOnly();
+        });
+      });
     }
     
     function updateTotals(grandTotal, structureArea) {
@@ -2400,44 +2601,39 @@
       document.getElementById('per-sqft-cost-mobile').textContent = `₹${perSqftCostWithGst.toFixed(2)}`;
     }
     
-    // Calculate only amounts when rates change (don't rebuild table)
-    function calculateFromRates() {
-      const rows = document.getElementById('results-body').querySelectorAll('tr');
+    // Calculate ONLY totals from existing amounts (don't rebuild table or recalculate rows)
+    function calculateTotalsOnly() {
       let grandTotal = 0;
       
-      // Update desktop table
-      rows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        const quantityText = cells[1].textContent.trim().split(' ')[0];
-        const quantity = parseFloat(quantityText) || 0;
-        const rateInput = cells[2].querySelector('input');
-        const rateId = rateInput.id;
-        const rateVal = rateInput.value;
-        const rate = rateVal === '' ? 0 : parseFloat(rateVal) || 0;
-        const amount = quantity * rate;
+      // Sum all desktop amount cells
+      const desktopAmountCells = document.querySelectorAll('.amount-cell[data-amount-for]:not([data-amount-for*="-mobile"])');
+      desktopAmountCells.forEach(cell => {
+        const amountText = cell.textContent.replace('₹', '').replace(',', '').trim();
+        const amount = parseFloat(amountText) || 0;
         grandTotal += amount;
-        
-        cells[3].textContent = `₹${amount.toFixed(2)}`;
-        
-        // Sync mobile rate input value
-        const mobileRateInput = document.getElementById(`${rateId}-mobile`);
-        if (mobileRateInput && mobileRateInput.value !== rateVal) {
-          mobileRateInput.value = rateVal;
-        }
-        
-        // Update mobile amount
-        const mobileAmount = document.getElementById(`${rateId}-amount-mobile`);
-        if (mobileAmount) {
-          mobileAmount.textContent = `₹${amount.toFixed(2)}`;
-        }
       });
       
-      const length = parseFloat(document.getElementById('length').value) || 0;
-      const width = parseFloat(document.getElementById('width').value) || 0;
+      const length = convertToFeet(parseFloat(document.getElementById('length').value) || 0, currentUnit);
+      const width = convertToFeet(parseFloat(document.getElementById('width').value) || 0, currentUnit);
       const structureArea = length * width;
       
       // Update totals (both desktop and mobile)
       updateTotals(grandTotal, structureArea);
+    }
+    
+    // Clear all rates function
+    function clearAllRates() {
+      // Clear all rate inputs - both desktop and mobile
+      const allRateInputs = document.querySelectorAll('.rate-input[data-rate-id]');
+      allRateInputs.forEach(input => {
+        input.value = '';
+        const rateId = input.getAttribute('data-rate-id');
+        const baseRateId = rateId.replace('-mobile', '');
+        rateStore[baseRateId] = '';
+      });
+      
+      // Recalculate to update all amounts to zero
+      calculateFromRates();
     }
     
     // Initialize
@@ -2478,7 +2674,78 @@
     
     // Print functionality
     function printCalculation() {
-      window.print();
+      const printWindow = window.open('', '', 'width=800,height=600');
+      const today = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+      
+      let tableRows = '';
+      let grandTotal = 0;
+      
+      const rows = document.getElementById('results-body').querySelectorAll('tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const componentName = cells[0].textContent.trim();
+        const quantity = cells[1].textContent.trim();
+        const rateInput = cells[2].querySelector('input');
+        const rate = rateInput.value || '0';
+        const amount = cells[3].textContent.trim();
+        
+        // Only include rows where rate is entered (not empty or 0)
+        const rateValue = parseFloat(rate);
+        if (rateValue > 0) {
+          tableRows += '<tr>';
+          tableRows += '<td>' + componentName + '</td>';
+          tableRows += '<td style="text-align: center;">' + quantity + '</td>';
+          tableRows += '<td style="text-align: right;">₹' + rate + '</td>';
+          tableRows += '<td style="text-align: right;">' + amount + '</td>';
+          tableRows += '</tr>';
+          
+          const amountValue = parseFloat(amount.replace('₹', '').replace(',', '')) || 0;
+          grandTotal += amountValue;
+        }
+      });
+      
+      const gstAmount = grandTotal * 0.18;
+      const totalWithGst = grandTotal + gstAmount;
+      
+      const length = convertToFeet(parseFloat(document.getElementById('length').value) || 0, currentUnit);
+      const width = convertToFeet(parseFloat(document.getElementById('width').value) || 0, currentUnit);
+      const structureArea = length * width;
+      const perSqftCostWithoutGst = structureArea > 0 ? grandTotal / structureArea : 0;
+      const perSqftCostWithGst = structureArea > 0 ? totalWithGst / structureArea : 0;
+      
+      let htmlContent = '<!DOCTYPE html><html><head><title>Quotation - Contrive Interior & Construction</title>';
+      htmlContent += '<style>* { margin: 0; padding: 0; box-sizing: border-box; }';
+      htmlContent += 'body { font-family: Arial, sans-serif; padding: 30px; background: white; color: #333; }';
+      htmlContent += '.header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid #ff8a4c; padding-bottom: 15px; }';
+      htmlContent += '.header h1 { font-size: 24px; color: #ff8a4c; margin-bottom: 5px; font-weight: 700; }';
+      htmlContent += '.header h2 { font-size: 18px; color: #666; margin-bottom: 10px; font-weight: 600; }';
+      htmlContent += '.header p { font-size: 12px; color: #888; }';
+      htmlContent += 'table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11px; }';
+      htmlContent += 'th, td { border: 1px solid #333; padding: 8px; }';
+      htmlContent += 'th { background: #f5f5f5; font-weight: 600; text-align: left; }';
+      htmlContent += '.totals { margin-top: 10px; font-size: 12px; }';
+      htmlContent += '.totals tr td:first-child { font-weight: 600; text-align: right; padding-right: 20px; }';
+      htmlContent += '.totals tr td:last-child { text-align: right; font-weight: 600; }';
+      htmlContent += '.gst-row { background: #ffe8dc !important; }';
+      htmlContent += '.grand-total-row { background: #ffd4bf !important; font-size: 14px !important; font-weight: 700 !important; }';
+      htmlContent += '.per-sqft-row { background: #fff5ed !important; }';
+      htmlContent += '.footer { margin-top: 40px; text-align: center; font-size: 11px; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }';
+      htmlContent += '</style></head><body>';
+      htmlContent += '<div class="header"><h1>Contrive Interior & Construction</h1><h2>Quotation - ' + (currentProject ? currentProject.name : 'Project') + '</h2><p>Date: ' + today + '</p></div>';
+      htmlContent += '<table><thead><tr><th>Component</th><th style="text-align: center;">Quantity</th>';
+      htmlContent += '<th style="text-align: right;">Rate</th><th style="text-align: right;">Amount</th></tr></thead>';
+      htmlContent += '<tbody>' + tableRows + '</tbody></table>';
+      htmlContent += '<table class="totals"><tr><td>Subtotal (Without GST):</td><td>₹' + grandTotal.toFixed(2) + '</td></tr>';
+      htmlContent += '<tr class="gst-row"><td>GST @18%:</td><td>₹' + gstAmount.toFixed(2) + '</td></tr>';
+      htmlContent += '<tr class="grand-total-row"><td>Grand Total (With GST):</td><td>₹' + totalWithGst.toFixed(2) + '</td></tr>';
+      htmlContent += '<tr class="per-sqft-row"><td>Per Sq.Ft Cost (Without GST):</td><td>₹' + perSqftCostWithoutGst.toFixed(2) + '</td></tr>';
+      htmlContent += '<tr class="per-sqft-row"><td>Per Sq.Ft Cost (With GST):</td><td>₹' + perSqftCostWithGst.toFixed(2) + '</td></tr></table>';
+      htmlContent += '<div class="footer"><p><strong>Powered by Afjal Ali</strong></p><p>Contact: +91-9452137890</p></div>';
+      htmlContent += '<script>window.onload = function() { window.print(); window.onafterprint = function() { window.close(); }; };<\/script>';
+      htmlContent += '</body></html>';
+      
+      printWindow.document.write(htmlContent);
+      printWindow.document.close();
     }
     
     // PDF Download functionality
@@ -2504,7 +2771,7 @@
       
       message.innerHTML = `
         <div style="font-size: 1.25rem; font-weight: 600; color: #ff8a4c; margin-bottom: 1rem; font-family: 'Manrope', sans-serif;">
-          📄 Save as PDF
+              Save as PDF
         </div>
         <div style="font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5rem;">
           To save this calculation as PDF:<br><br>
@@ -2539,6 +2806,423 @@
       
       document.body.appendChild(message);
     }
+    
+    // Material Specification Module
+    const materialSpecData = [
+      { name: 'MS Pipe 25×25', size: '25×25', thickness: null, defaultWeight: 7, showThickness: false },
+      { name: 'MS Pipe 40×40', size: '40×40', thickness: 2.0, defaultWeight: 14, showThickness: true },
+      { name: 'MS Pipe 40×80', size: '40×80', thickness: 2.2, defaultWeight: 23, showThickness: true },
+      { name: 'MS Pipe 50×100', size: '50×100', thickness: 2.5, defaultWeight: 34, showThickness: true },
+      { name: 'MS Pipe 100×100', size: '100×100', thickness: 3.0, defaultWeight: 40, showThickness: true },
+      { name: 'MS Pipe 100×150', size: '100×150', thickness: 3.0, defaultWeight: 50, showThickness: true },
+      { name: 'MS Pipe 150×150', size: '150×150', thickness: 3.5, defaultWeight: 70, showThickness: true },
+      { name: 'C Channel', size: '5 Inch (ISMC 125)', thickness: 2.5, defaultWeight: 28, showThickness: true },
+      { name: 'C Channel', size: '5 Inch (ISMC 125)', thickness: 5.0, defaultWeight: 28, showThickness: true }
+    ];
+    
+    const materialRateStore = {};
+    
+    function openMaterialSpec() {
+      // Hide selection and calculator screens
+      document.getElementById('selection-screen').style.display = 'none';
+      const calcScreen = document.getElementById('calculator-screen');
+      if (calcScreen) {
+        calcScreen.classList.remove('active');
+        calcScreen.style.display = 'none';
+      }
+      
+      // Show material spec screen
+      const materialScreen = document.getElementById('material-spec-screen');
+      materialScreen.style.display = 'block';
+      
+      // Apply cyan theme for material spec
+      applyProjectTheme({
+        primary: '#05EAF2',
+        secondary: '#04c9d1',
+        gradient: 'linear-gradient(135deg, #05EAF2 0%, #04c9d1 100%)'
+      });
+      
+      // Initialize material spec table
+      initMaterialSpec();
+    }
+    
+    function closeMaterialSpec() {
+      // Hide material spec screen
+      document.getElementById('material-spec-screen').style.display = 'none';
+      
+      // Show calculator screen if project was selected, otherwise show selection
+      if (currentProject) {
+        const calculatorScreen = document.getElementById('calculator-screen');
+        calculatorScreen.style.display = 'block';
+        calculatorScreen.classList.add('active');
+        
+        // Restore project-specific theme
+        applyProjectTheme(currentProject.theme);
+      } else {
+        document.getElementById('selection-screen').style.display = 'flex';
+        
+        // Reset to default orange theme
+        applyProjectTheme({
+          primary: '#ff8a4c',
+          secondary: '#ffad7a',
+          gradient: 'linear-gradient(135deg, #ff8a4c 0%, #ffad7a 100%)'
+        });
+      }
+    }
+    
+    function initMaterialSpec() {
+      // Just render the table - it will be empty initially until user selects materials
+      updateMaterialSpecTable();
+    }
+    
+    function updateMaterialSpecTable() {
+      const tbody = document.getElementById('material-spec-body');
+      const mobileCards = document.getElementById('material-spec-mobile-cards');
+      tbody.innerHTML = '';
+      mobileCards.innerHTML = '';
+      
+      let rowCount = 0;
+      
+      materialSpecData.forEach((material, index) => {
+        const checkbox = document.getElementById(`pipe-select-${index}`);
+        
+        // Only show row if checkbox is ticked
+        if (!checkbox || !checkbox.checked) {
+          return;
+        }
+        
+        const thicknessId = `ms-thickness-${index}`;
+        const qtyId = `ms-qty-${index}`;
+        const weightId = `ms-weight-${index}`;
+        const rateId = `ms-rate-${index}`;
+        
+        // Get stored values or use defaults
+        const storedThickness = materialRateStore[thicknessId] !== undefined ? materialRateStore[thicknessId] : (material.thickness || '');
+        const storedQty = materialRateStore[qtyId] || '';
+        const storedWeight = materialRateStore[weightId] !== undefined ? materialRateStore[weightId] : material.defaultWeight;
+        const storedRate = materialRateStore[rateId] || '';
+        
+        // Desktop table row
+        const row = document.createElement('tr');
+        
+        const thicknessCell = material.showThickness 
+          ? `<td><input type="number" class="rate-input ms-input" id="${thicknessId}" data-ms-id="${thicknessId}" data-index="${index}" value="${storedThickness}" step="0.1" placeholder="0" style="width: 80px;"></td>`
+          : `<td style="text-align: center; color: #6b7280;">—</td>`;
+        
+        row.innerHTML = `
+          <td style="font-weight: 500;">${material.name}</td>
+          <td>${material.size}</td>
+          ${thicknessCell}
+          <td><input type="number" class="rate-input ms-input" id="${qtyId}" data-ms-id="${qtyId}" data-index="${index}" value="${storedQty}" step="1" placeholder="0" style="width: 80px;"></td>
+          <td><input type="number" class="rate-input ms-input" id="${weightId}" data-ms-id="${weightId}" data-index="${index}" value="${storedWeight}" step="0.1" placeholder="0" style="width: 90px;"></td>
+          <td id="total-weight-${index}">0.00 kg</td>
+          <td><input type="number" class="rate-input ms-input" id="${rateId}" data-ms-id="${rateId}" data-index="${index}" value="${storedRate}" step="0.01" placeholder="0" style="width: 100px;"></td>
+          <td id="amount-${index}">₹0.00</td>
+        `;
+        tbody.appendChild(row);
+        
+        // Mobile card
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        
+        const thicknessRow = material.showThickness 
+          ? `<div class="result-card-row">
+              <span class="result-card-label">Thickness (mm)</span>
+              <input type="number" class="rate-input ms-input" data-ms-id="${thicknessId}" data-index="${index}" value="${storedThickness}" step="0.1" placeholder="0">
+            </div>`
+          : '';
+        
+        card.innerHTML = `
+          <div class="result-card-header">${material.name} (${material.size})</div>
+          ${thicknessRow}
+          <div class="result-card-row">
+            <span class="result-card-label">Qty (Pieces - 20ft)</span>
+            <input type="number" class="rate-input ms-input" data-ms-id="${qtyId}" data-index="${index}" value="${storedQty}" step="1" placeholder="0">
+          </div>
+          <div class="result-card-row">
+            <span class="result-card-label">Weight per Piece (kg)</span>
+            <input type="number" class="rate-input ms-input" data-ms-id="${weightId}" data-index="${index}" value="${storedWeight}" step="0.1" placeholder="0">
+          </div>
+          <div class="result-card-row">
+            <span class="result-card-label">Total Weight</span>
+            <span class="result-card-value" id="total-weight-${index}-mobile">0.00 kg</span>
+          </div>
+          <div class="result-card-row">
+            <span class="result-card-label">Rate (₹/kg)</span>
+            <input type="number" class="rate-input ms-input" data-ms-id="${rateId}" data-index="${index}" value="${storedRate}" step="0.01" placeholder="0">
+          </div>
+          <div class="result-card-row">
+            <span class="result-card-label">Amount</span>
+            <span class="result-card-value" id="amount-${index}-mobile">₹0.00</span>
+          </div>
+        `;
+        mobileCards.appendChild(card);
+        
+        rowCount++;
+      });
+      
+      // Show message if no materials selected
+      if (rowCount === 0) {
+        const emptyRow = document.createElement('tr');
+        emptyRow.innerHTML = `
+          <td colspan="8" style="text-align: center; padding: 2rem; color: #6b7280; font-style: italic;">
+            ⬆️ Please select materials from above to start calculation
+          </td>
+        `;
+        tbody.appendChild(emptyRow);
+        
+        const emptyCard = document.createElement('div');
+        emptyCard.style.cssText = 'text-align: center; padding: 2rem; color: #6b7280; font-style: italic; grid-column: 1 / -1;';
+        emptyCard.textContent = '⬆️ Please select materials from above to start calculation';
+        mobileCards.appendChild(emptyCard);
+      }
+      
+      // Attach event listeners ONCE after all inputs are created
+      setTimeout(() => {
+        attachMaterialSpecListeners();
+      }, 0);
+      
+      // Initial calculation
+      calculateMaterialSpec();
+    }
+    
+    // Separate function to attach listeners to material spec inputs
+    function attachMaterialSpecListeners() {
+      const allMsInputs = document.querySelectorAll('.ms-input[data-ms-id]');
+      
+      allMsInputs.forEach(input => {
+        input.addEventListener('input', function() {
+          const msId = this.getAttribute('data-ms-id');
+          const value = this.value;
+          
+          // Store the value
+          materialRateStore[msId] = value;
+          
+          // Sync all inputs with same data-ms-id (desktop and mobile)
+          const allSameInputs = document.querySelectorAll(`.ms-input[data-ms-id="${msId}"]`);
+          allSameInputs.forEach(syncInput => {
+            if (syncInput !== this) {
+              syncInput.value = value;
+            }
+          });
+          
+          // Recalculate immediately
+          calculateMaterialSpec();
+        });
+      });
+    }
+    
+    function calculateMaterialSpec() {
+      const gstIncluded = document.getElementById('gst-included').checked;
+      let totalWeight = 0;
+      let subtotal = 0;
+      
+      materialSpecData.forEach((material, index) => {
+        const qtyId = `ms-qty-${index}`;
+        const weightId = `ms-weight-${index}`;
+        const rateId = `ms-rate-${index}`;
+        
+        // Get values from DOM inputs directly
+        const qtyInput = document.getElementById(qtyId);
+        const weightInput = document.getElementById(weightId);
+        const rateInput = document.getElementById(rateId);
+        
+        const qty = parseFloat(qtyInput ? qtyInput.value : 0) || 0;
+        const weightPerPiece = parseFloat(weightInput ? weightInput.value : material.defaultWeight) || 0;
+        const ratePerKg = parseFloat(rateInput ? rateInput.value : 0) || 0;
+        
+        // Calculate total weight
+        const weight = qty * weightPerPiece;
+        totalWeight += weight;
+        
+        // Direct calculation: Weight × Rate
+        const amount = weight * ratePerKg;
+        subtotal += amount;
+        
+        // Update desktop display
+        const desktopWeightCell = document.getElementById(`total-weight-${index}`);
+        const desktopAmountCell = document.getElementById(`amount-${index}`);
+        if (desktopWeightCell) desktopWeightCell.textContent = `${weight.toFixed(2)} kg`;
+        if (desktopAmountCell) desktopAmountCell.textContent = `₹${amount.toFixed(2)}`;
+        
+        // Update mobile display
+        const mobileWeight = document.getElementById(`total-weight-${index}-mobile`);
+        const mobileAmount = document.getElementById(`amount-${index}-mobile`);
+        if (mobileWeight) mobileWeight.textContent = `${weight.toFixed(2)} kg`;
+        if (mobileAmount) mobileAmount.textContent = `₹${amount.toFixed(2)}`;
+      });
+      
+      // Calculate based on GST checkbox
+      let gstAmount, grandTotal;
+      
+      if (gstIncluded) {
+        // GST is INCLUDED in subtotal - no additional GST to add
+        gstAmount = subtotal * (18 / 118); // Extract GST component
+        grandTotal = subtotal; // Grand total = subtotal (already includes GST)
+      } else {
+        // GST is NOT included - add 18% GST
+        gstAmount = subtotal * 0.18;
+        grandTotal = subtotal + gstAmount;
+      }
+      
+      // Update desktop totals
+      const totalWeightElem = document.getElementById('total-weight');
+      const subtotalElem = document.getElementById('material-subtotal');
+      const subtotalLabel = document.querySelector('.material-spec-table tfoot tr:nth-child(2) td:first-child');
+      const gstElem = document.getElementById('material-gst-amount');
+      const gstLabel = document.querySelector('.material-spec-table tfoot tr:nth-child(3) td:first-child');
+      const grandTotalElem = document.getElementById('material-grand-total');
+      
+      if (totalWeightElem) totalWeightElem.textContent = `${totalWeight.toFixed(2)} kg`;
+      if (subtotalElem) subtotalElem.textContent = `₹${subtotal.toFixed(2)}`;
+      if (subtotalLabel) subtotalLabel.textContent = gstIncluded ? 'Subtotal (With GST)' : 'Subtotal (Without GST)';
+      if (gstElem) gstElem.textContent = `₹${gstAmount.toFixed(2)}`;
+      if (gstLabel) gstLabel.textContent = gstIncluded ? 'GST @18% (Included)' : 'GST @18%';
+      if (grandTotalElem) grandTotalElem.textContent = `₹${grandTotal.toFixed(2)}`;
+      
+      // Update mobile totals
+      const totalWeightMobile = document.getElementById('total-weight-mobile');
+      const subtotalMobile = document.getElementById('material-subtotal-mobile');
+      const subtotalLabelMobile = document.querySelector('#material-spec-screen .total-card.subtotal .total-card-label');
+      const gstMobile = document.getElementById('material-gst-amount-mobile');
+      const gstLabelMobile = document.querySelector('#material-spec-screen .total-card.gst .total-card-label');
+      const grandTotalMobile = document.getElementById('material-grand-total-mobile');
+      
+      if (totalWeightMobile) totalWeightMobile.textContent = `${totalWeight.toFixed(2)} kg`;
+      if (subtotalMobile) subtotalMobile.textContent = `₹${subtotal.toFixed(2)}`;
+      if (subtotalLabelMobile) subtotalLabelMobile.textContent = gstIncluded ? 'Subtotal (With GST)' : 'Subtotal (Without GST)';
+      if (gstMobile) gstMobile.textContent = `₹${gstAmount.toFixed(2)}`;
+      if (gstLabelMobile) gstLabelMobile.textContent = gstIncluded ? 'GST @18% (Included)' : 'GST @18%';
+      if (grandTotalMobile) grandTotalMobile.textContent = `₹${grandTotal.toFixed(2)}`;
+    }
+    
+    function clearMaterialSpec() {
+      // Clear all material spec inputs
+      materialSpecData.forEach((material, index) => {
+        const thicknessId = `ms-thickness-${index}`;
+        const qtyId = `ms-qty-${index}`;
+        const weightId = `ms-weight-${index}`;
+        const rateId = `ms-rate-${index}`;
+        
+        // Clear from store
+        delete materialRateStore[thicknessId];
+        delete materialRateStore[qtyId];
+        materialRateStore[weightId] = material.defaultWeight; // Reset to default weight
+        delete materialRateStore[rateId];
+        
+        // Clear desktop inputs
+        const thicknessInput = document.getElementById(thicknessId);
+        const qtyInput = document.getElementById(qtyId);
+        const weightInput = document.getElementById(weightId);
+        const rateInput = document.getElementById(rateId);
+        
+        if (thicknessInput) thicknessInput.value = material.thickness || '';
+        if (qtyInput) qtyInput.value = '';
+        if (weightInput) weightInput.value = material.defaultWeight;
+        if (rateInput) rateInput.value = '';
+        
+        // Clear mobile inputs
+        const thicknessMobile = document.getElementById(`${thicknessId}-mobile`);
+        const qtyMobile = document.getElementById(`${qtyId}-mobile`);
+        const weightMobile = document.getElementById(`${weightId}-mobile`);
+        const rateMobile = document.getElementById(`${rateId}-mobile`);
+        
+        if (thicknessMobile) thicknessMobile.value = material.thickness || '';
+        if (qtyMobile) qtyMobile.value = '';
+        if (weightMobile) weightMobile.value = material.defaultWeight;
+        if (rateMobile) rateMobile.value = '';
+      });
+      
+      // Recalculate to reset all totals
+      calculateMaterialSpec();
+    }
+    
+    function printMaterialSpec() {
+      const printWindow = window.open('', '', 'width=800,height=600');
+      const today = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+      
+      let tableRows = '';
+      let totalWeight = 0;
+      let subtotalWithoutGst = 0;
+      
+      materialSpecData.forEach((material, index) => {
+        const qtyId = 'ms-qty-' + index;
+        const weightId = 'ms-weight-' + index;
+        const rateId = 'ms-rate-' + index;
+        const thicknessId = 'ms-thickness-' + index;
+        
+        const qty = parseFloat(materialRateStore[qtyId] || 0);
+        const weightPerPiece = parseFloat(materialRateStore[weightId] !== undefined ? materialRateStore[weightId] : material.defaultWeight);
+        const ratePerKg = parseFloat(materialRateStore[rateId] || 0);
+        const thickness = material.showThickness ? (materialRateStore[thicknessId] || material.thickness || '   ') : '—';
+        
+        const weight = qty * weightPerPiece;
+        
+        const gstIncluded = document.getElementById('gst-included').checked;
+        let amount;
+        
+        if (gstIncluded) {
+          const baseRatePerKg = ratePerKg / 1.18;
+          amount = weight * baseRatePerKg;
+        } else {
+          amount = weight * ratePerKg;
+        }
+        
+        // Only include rows where quantity and rate are entered
+        if (qty > 0 && ratePerKg > 0) {
+          totalWeight += weight;
+          subtotalWithoutGst += amount;
+          
+          tableRows += '<tr>';
+          tableRows += '<td>' + material.name + '</td>';
+          tableRows += '<td style="text-align: center;">' + material.size + '</td>';
+          tableRows += '<td style="text-align: center;">' + thickness + '</td>';
+          tableRows += '<td style="text-align: center;">' + qty + '</td>';
+          tableRows += '<td style="text-align: right;">' + weightPerPiece.toFixed(2) + ' kg</td>';
+          tableRows += '<td style="text-align: right;">' + weight.toFixed(2) + ' kg</td>';
+          tableRows += '<td style="text-align: right;">₹' + ratePerKg.toFixed(2) + '</td>';
+          tableRows += '<td style="text-align: right;">₹' + amount.toFixed(2) + '</td>';
+          tableRows += '</tr>';
+        }
+      });
+      
+      const gstAmount = subtotalWithoutGst * 0.18;
+      const grandTotal = subtotalWithoutGst + gstAmount;
+      
+      let htmlContent = '<!DOCTYPE html><html><head><title>Material Specification - Contrive Interior & Construction</title>';
+      htmlContent += '<style>* { margin: 0; padding: 0; box-sizing: border-box; }';
+      htmlContent += 'body { font-family: Arial, sans-serif; padding: 30px; background: white; color: #333; }';
+      htmlContent += '.header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid #ff8a4c; padding-bottom: 15px; }';
+      htmlContent += '.header h1 { font-size: 24px; color: #ff8a4c; margin-bottom: 5px; font-weight: 700; }';
+      htmlContent += '.header h2 { font-size: 18px; color: #666; margin-bottom: 10px; font-weight: 600; }';
+      htmlContent += '.header p { font-size: 12px; color: #888; }';
+      htmlContent += 'table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11px; }';
+      htmlContent += 'th, td { border: 1px solid #333; padding: 8px; }';
+      htmlContent += 'th { background: #f5f5f5; font-weight: 600; text-align: left; }';
+      htmlContent += '.totals { margin-top: 10px; font-size: 12px; }';
+      htmlContent += '.totals tr td:first-child { font-weight: 600; text-align: right; padding-right: 20px; }';
+      htmlContent += '.totals tr td:last-child { text-align: right; font-weight: 600; }';
+      htmlContent += '.gst-row { background: #ffe8dc !important; }';
+      htmlContent += '.grand-total-row { background: #ffd4bf !important; font-size: 14px !important; font-weight: 700 !important; }';
+      htmlContent += '.footer { margin-top: 40px; text-align: center; font-size: 11px; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }';
+      htmlContent += '</style></head><body>';
+      htmlContent += '<div class="header"><h1>Contrive Interior & Construction</h1><h2>Material Specification (M.S.)</h2><p>Date: ' + today + '</p></div>';
+      htmlContent += '<table><thead><tr><th>Material Component</th><th style="text-align: center;">Size</th>';
+      htmlContent += '<th style="text-align: center;">Thickness (mm)</th><th style="text-align: center;">Qty (Pieces - 20ft)</th>';
+      htmlContent += '<th style="text-align: right;">Weight/Piece (kg)</th><th style="text-align: right;">Total Weight (kg)</th>';
+      htmlContent += '<th style="text-align: right;">Rate (₹/kg)</th><th style="text-align: right;">Amount (₹)</th></tr></thead>';
+      htmlContent += '<tbody>' + tableRows + '</tbody></table>';
+      htmlContent += '<table class="totals"><tr><td>Total Material Weight:</td><td>' + totalWeight.toFixed(2) + ' kg</td></tr>';
+      htmlContent += '<tr><td>Subtotal (Material Cost):</td><td>₹' + subtotalWithoutGst.toFixed(2) + '</td></tr>';
+      htmlContent += '<tr class="gst-row"><td>GST @18%:</td><td>₹' + gstAmount.toFixed(2) + '</td></tr>';
+      htmlContent += '<tr class="grand-total-row"><td>Grand Total (With GST):</td><td>₹' + grandTotal.toFixed(2) + '</td></tr></table>';
+      htmlContent += '<div class="footer"><p><strong>Powered by Afjal Ali</strong></p><p>Contact: +91-9452137890</p></div>';
+      htmlContent += '<script>window.onload = function() { window.print(); window.onafterprint = function() { window.close(); }; };<\/script>';
+      htmlContent += '</body></html>';
+      
+      printWindow.document.write(htmlContent);
+      printWindow.document.close();
+    }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1e7bea81bc7fb3',t:'MTc2OTA3ODk2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c27410bc1637f97',t:'MTc2OTE3MDkyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
